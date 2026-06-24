@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export function Hero() {
   return (
-    <section className="relative flex h-[600px] items-center justify-center overflow-hidden md:h-[650px]">
+    <section className="relative z-10 flex h-[620px] items-center justify-center overflow-hidden md:h-[680px]">
       <Image
         src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070"
         alt="Community coming together to help with food donations"
@@ -12,7 +12,7 @@ export function Hero() {
         className="object-cover object-center"
         sizes="100vw"
       />
-      <div className="absolute inset-0 bg-black/45" aria-hidden="true" />
+      <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
 
       <div className="relative z-10 max-w-4xl px-6 text-center text-white">
         <h1 className="text-5xl font-semibold leading-tight tracking-tight md:text-6xl">
@@ -35,23 +35,23 @@ export function Hero() {
           </Link>
           <Link
             href="/register"
-            className="rounded-full bg-white/90 px-8 py-3.5 font-semibold text-[#3D2B1F] transition-colors hover:bg-white"
+            className="rounded-full bg-white px-8 py-3.5 font-semibold text-[#3D2B1F] transition-colors hover:bg-gray-100"
           >
             Become a Volunteer
           </Link>
         </div>
 
-        <p className="mt-6 text-sm text-white/80">
+        <p className="mt-5 text-sm text-white/80">
           Join 500+ volunteers making a difference every week
         </p>
       </div>
 
       <a
         href="#how-it-works"
-        className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 md:flex"
+        className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 text-white/70 md:block"
         aria-label="Scroll to explore"
       >
-        <div className="flex flex-col items-center text-sm text-white/70 transition-colors hover:text-white">
+        <div className="flex flex-col items-center text-sm transition-colors hover:text-white">
           <span>Scroll to explore</span>
           <svg
             className="mt-1 h-5 w-5 animate-bounce"
