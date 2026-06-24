@@ -31,7 +31,7 @@ function VolunteerIcon() {
   return <Users className="h-10 w-10 text-brand-sage" strokeWidth={1.75} aria-hidden="true" />;
 }
 
-const CARDS: ImpactCard[] = [
+export const IMPACT_CARDS: ImpactCard[] = [
   {
     title: "Donors",
     subheading: "Maximize your impact.",
@@ -55,32 +55,22 @@ const CARDS: ImpactCard[] = [
   },
 ];
 
-export function CommunityImpact() {
+export function ImpactCardsGrid() {
   return (
-    <section className="bg-[#FDF8F3] py-20 dark:bg-card-muted">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="mb-12 text-center">
-          <h2 className="text-3xl font-semibold text-[#3D2B1F] dark:text-foreground md:text-4xl">
-            Unlocking Community-Driven Impact
-          </h2>
+    <div className="grid gap-6 md:grid-cols-3">
+      {IMPACT_CARDS.map((card) => (
+        <div
+          key={card.title}
+          className={`rounded-2xl border bg-white p-7 transition-shadow hover:shadow-md dark:bg-card ${card.borderClass}`}
+        >
+          <div className="mb-5 flex min-h-[48px] items-center">{card.icon}</div>
+          <h3 className="mb-3 text-xl font-semibold text-[#3D2B1F] dark:text-foreground">{card.title}</h3>
+          <p className="mb-1 text-sm font-medium leading-relaxed text-[#3D2B1F] dark:text-foreground">
+            {card.subheading}
+          </p>
+          <p className="text-sm leading-relaxed text-[#5C5146] dark:text-muted">{card.body}</p>
         </div>
-
-        <div className="grid gap-6 md:grid-cols-3">
-          {CARDS.map((card) => (
-            <div
-              key={card.title}
-              className={`rounded-2xl border bg-white p-7 transition-shadow hover:shadow-md dark:bg-card ${card.borderClass}`}
-            >
-              <div className="mb-5 flex min-h-[48px] items-center">{card.icon}</div>
-              <h3 className="mb-3 text-xl font-semibold text-[#3D2B1F] dark:text-foreground">{card.title}</h3>
-              <p className="mb-1 text-sm font-medium leading-relaxed text-[#3D2B1F] dark:text-foreground">
-                {card.subheading}
-              </p>
-              <p className="text-sm leading-relaxed text-[#5C5146] dark:text-muted">{card.body}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+      ))}
+    </div>
   );
 }
