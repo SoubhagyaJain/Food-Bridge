@@ -37,7 +37,7 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-4">
           <div>
             <div className="mb-4">
-              <Logo className="h-16 w-auto" />
+              <Logo className="h-[72px] w-auto" />
             </div>
             <p className="text-sm leading-relaxed text-[#5C5146]">
               Bridging the gap between surplus food and those who need it most. Together, we reduce waste and fight hunger.

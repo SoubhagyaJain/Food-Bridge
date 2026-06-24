@@ -43,7 +43,7 @@ export function Header({
             href={logoHref}
             className="flex items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4a9c6e] rounded-sm cursor-pointer"
           >
-            <Logo className="h-14 w-auto shrink-0" />
+            <Logo className="h-[52px] w-auto shrink-0" />
           </a>
 
           <nav className="hidden items-center gap-8 md:flex" aria-label="Main navigation">

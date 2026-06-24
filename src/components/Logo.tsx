@@ -5,7 +5,7 @@ export type LogoProps = {
 
 function LogoIcon() {
   return (
-    <>
+    <g transform="translate(0, -10)">
       <path d="M20 36C20 36 46 6 110 6C174 6 200 36 200 36" stroke="#4a9c6e" strokeWidth="6.5" strokeLinecap="round" />
       <path d="M34 38C34 38 56 18 110 18C164 18 186 38 186 38" stroke="#4a9c6e" strokeWidth="5" strokeLinecap="round" />
       <path d="M30 46C22 40 16 32 22 24C28 18 36 22 40 30" stroke="#4a9c6e" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -21,7 +21,7 @@ function LogoIcon() {
       <path d="M102 48C102 48 104 40 106 48" stroke="#F4C95D" strokeWidth="3" strokeLinecap="round" />
       <path d="M110 45C110 45 112 36 114 45" stroke="#F4C95D" strokeWidth="3" strokeLinecap="round" />
       <path d="M118 48C118 48 120 40 122 48" stroke="#F4C95D" strokeWidth="3" strokeLinecap="round" />
-    </>
+    </g>
   );
 }
 
@@ -29,7 +29,7 @@ export function Logo({ className = "h-14 w-auto", showWordmark = true }: LogoPro
   return (
     <svg
       className={className}
-      viewBox={showWordmark ? "0 0 220 88" : "0 0 220 86"}
+      viewBox={showWordmark ? "0 0 220 104" : "0 0 220 76"}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
@@ -39,11 +39,11 @@ export function Logo({ className = "h-14 w-auto", showWordmark = true }: LogoPro
       {showWordmark && (
         <text
           x="110"
-          y="84"
+          y="98"
           textAnchor="middle"
           fill="#D97757"
           fontFamily="Karla, system-ui, sans-serif"
-          fontSize="17"
+          fontSize="16"
           fontWeight="700"
           letterSpacing="0.5"
         >
