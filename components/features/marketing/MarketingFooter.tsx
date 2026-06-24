@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Wordmark } from "@/components/shared/Wordmark";
+import { MARKETING_NAV } from "@/lib/navigation";
 
 const linkClass = "text-[#5C5146] transition-colors hover:text-brand-sage";
 
@@ -20,10 +21,13 @@ export function MarketingFooter() {
           <div>
             <h4 className="mb-4 font-semibold text-[#3D2B1F]">Quick Links</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="#home" className={linkClass}>Home</Link></li>
-              <li><Link href="#about" className={linkClass}>About Us</Link></li>
-              <li><Link href="#programs" className={linkClass}>How It Works</Link></li>
-              <li><Link href="#impact" className={linkClass}>Impact Stories</Link></li>
+              {MARKETING_NAV.map((item) => (
+                <li key={item.label}>
+                  <Link href={item.href} className={linkClass}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 

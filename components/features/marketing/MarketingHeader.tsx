@@ -4,14 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Wordmark } from "@/components/shared/Wordmark";
 import { Button } from "@/components/ui/button";
-
-const NAV = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "How it Works", href: "#programs" },
-  { label: "Impact", href: "#impact" },
-  { label: "Volunteer", href: "/login" },
-];
+import { MARKETING_NAV } from "@/lib/navigation";
 
 export function MarketingHeader() {
   const [open, setOpen] = useState(false);
@@ -25,9 +18,9 @@ export function MarketingHeader() {
           </Link>
 
           <nav className="hidden items-center gap-8 md:flex" aria-label="Main navigation">
-            {NAV.map((item) => (
+            {MARKETING_NAV.map((item) => (
               <Link
-                key={item.href}
+                key={item.label}
                 href={item.href}
                 className="text-sm font-medium text-[#3D2B1F] transition-colors hover:text-brand-sage"
               >
@@ -65,8 +58,8 @@ export function MarketingHeader() {
       {open && (
         <nav className="border-t border-[#EDE6DC] px-6 py-4 md:hidden">
           <ul className="space-y-1">
-            {NAV.map((item) => (
-              <li key={item.href}>
+            {MARKETING_NAV.map((item) => (
+              <li key={item.label}>
                 <Link
                   href={item.href}
                   className="block rounded-md px-3 py-2.5 text-sm font-medium text-[#3D2B1F] hover:bg-[#F8F4EF]"
