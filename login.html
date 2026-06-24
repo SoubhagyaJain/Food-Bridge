@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - FoodBridge</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <nav class="inner-nav">
+        <a href="index.html" class="logo">FoodBridge</a>
+        <a href="register.html">Register</a>
+    </nav>
+
+    <div class="login-container">
+
+        <div class="login-box">
+
+            <h1>Welcome Back</h1>
+
+            <p>Login to continue your journey.</p>
+
+            <form id="loginForm">
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter Email">
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter Password">
+                <p class="forgot-link">
+                    <a href="#" onclick="showForgotPassword()">
+                    Forgot Password?
+                    </a>
+                </p>
+
+                <p id="error-message"></p>
+
+                <button type="submit">
+                    Login
+                </button>
+
+            </form>
+            <div id="forgot-section" style="display:none;">
+
+    <input
+        type="email"
+        id="forgotEmail"
+        placeholder="Enter Registered Email">
+
+    <input
+        type="password"
+        id="newPassword"
+        placeholder="New Password">
+
+    <input
+        type="password"
+        id="confirmPassword"
+        placeholder="Confirm Password">
+
+    <p id="forgot-message"></p>
+
+    <button onclick="resetPassword()">
+        Update Password
+    </button>
+
+</div>
+
+            <p class="register-link">
+                Don't have an account?
+                <a href="register.html">Register</a>
+            </p>
+
+        </div>
+
+    </div>
+
+    <script>
+
+const form = document.getElementById("loginForm");
+
+function showForgotPassword(){
+
+    document.getElementById("forgot-section").style.display = "block";
+}
+
+function resetPassword(){
+
+    const email =
+    document.getElementById("forgotEmail").value;
+
+    const newPassword =
+    document.getElementById("newPassword").value;
+
+    const confirmPassword =
+    document.getElementById("confirmPassword").value;
+
+    const message =
+    document.getElementById("forgot-message");
+
+    const savedUser =
+    JSON.parse(localStorage.getItem("registeredUser"));
+
+    if(!savedUser){
+
+        message.className = "msg-error";
+        message.innerText = "No registered account found";
+        return;
+    }
+
+    if(email !== savedUser.email){
+
+        message.className = "msg-error";
+        message.innerText = "Email not found";
+        return;
+    }
+
+    if(newPassword.length < 6){
+
+        message.className = "msg-error";
+        message.innerText =
+        "Password must be at least 6 characters";
+        return;
+    }
+
+    if(newPassword !== confirmPassword){
+
+        message.className = "msg-error";
+        message.innerText = "Passwords do not match";
+        return;
+    }
+
+    savedUser.password = newPassword;
+
+    localStorage.setItem(
+        "registeredUser",
+        JSON.stringify(savedUser)
+    );
+
+    message.className = "msg-success";
+    message.innerText = "Password Updated Successfully!";
+}
+
+form.addEventListener("submit", function(event){
+
+    event.preventDefault();
+
+    const email =
+    document.getElementById("email").value;
+
+    const password =
+    document.getElementById("password").value;
+
+    const error =
+    document.getElementById("error-message");
+
+    if(email === "" || password === ""){
+
+        error.className = "msg-error";
+        error.innerText = "Please fill all fields";
+        return;
+    }
+
+    const savedUser =
+    JSON.parse(localStorage.getItem("registeredUser"));
+
+    if(!savedUser){
+
+        error.className = "msg-error";
+        error.innerText = "No registered account found";
+        return;
+    }
+
+    if(
+        email !== savedUser.email ||
+        password !== savedUser.password
+    ){
+
+        error.className = "msg-error";
+        error.innerText = "Invalid email or password";
+        return;
+    }
+
+    sessionStorage.setItem("loggedIn","true");
+
+    error.className = "msg-success";
+    error.innerText = "Login Successful! Redirecting...";
+
+    setTimeout(() => {
+        window.location.href = "dashboard.html";
+    }, 1500);
+
+});
+
+</script>
+
+</body>
+
+</html>

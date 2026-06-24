@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Donations</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <nav class="dashboard-nav">
+        <a href="index.html" class="logo">FoodBridge</a>
+
+        <div class="dashboard-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="donate.html">Donate Food</a>
+            <a href="my-donations.html">View</a>
+        </div>
+    </nav>
+
+<section class="donations-page">
+
+    <h1>Available Donations</h1>
+
+    <div class="filter-box">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search food..."
+        >
+
+        <select id="statusFilter">
+            <option value="all">All Status</option>
+            <option value="pending">Pending</option>
+            <option value="claimed">Claimed</option>
+        </select>
+
+    </div>
+
+    <div class="donations-container" id="donationsContainer"></div>
+
+</section>
+
+<script>
+
+const container =
+document.getElementById("donationsContainer");
+
+const searchInput =
+document.getElementById("searchInput");
+
+const statusFilter =
+document.getElementById("statusFilter");
+
+let donations =
+JSON.parse(localStorage.getItem("donations")) || [];
+
+renderDonations();
+
+searchInput.addEventListener("input", renderDonations);
+statusFilter.addEventListener("change", renderDonations);
+
+function renderDonations(){
+
+    container.innerHTML = "";
+
+    let filteredDonations = donations.filter((donation)=>{
+
+        const searchValue =
+        searchInput.value.toLowerCase();
+
+        const matchesSearch =
+        donation.foodName.toLowerCase().includes(searchValue);
+
+        const matchesStatus =
+        statusFilter.value === "all" ||
+        (statusFilter.value === "claimed" && donation.claimed) ||
+        (statusFilter.value === "pending" && !donation.claimed);
+
+        return matchesSearch && matchesStatus;
+    });
+
+    if(filteredDonations.length === 0){
+        container.innerHTML =
+        "<p class='empty-state'>No matching donations found.</p>";
+        return;
+    }
+
+    filteredDonations.forEach((donation,index)=>{
+
+        const card =
+        document.createElement("div");
+
+        card.classList.add("donation-card");
+
+        const status =
+        donation.claimed ? "claimed" : "pending";
+
+        const statusText =
+        donation.claimed ? "Claimed" : "Pending";
+
+        const buttonText =
+        donation.claimed ? "Claimed" : "Claim Donation";
+
+        card.innerHTML = `
+            <h2>${donation.foodName}</h2>
+
+            <p>
+                <strong>Quantity:</strong>
+                ${donation.quantity}
+            </p>
+
+            <p>
+                <strong>Food Type:</strong>
+                ${donation.foodType}
+            </p>
+
+            <p>
+                <strong>Address:</strong>
+                ${donation.pickupAddress}
+            </p>
+
+            <span class="${status}">
+                ${statusText}
+            </span>
+
+            <button
+                class="claim-btn"
+                onclick="claimDonation(${donations.indexOf(donation)})"
+                ${donation.claimed ? "disabled" : ""}
+            >
+                ${buttonText}
+            </button>
+        `;
+
+        container.appendChild(card);
+    });
+}
+
+function claimDonation(index){
+
+    donations[index].claimed = true;
+
+    localStorage.setItem(
+        "donations",
+        JSON.stringify(donations)
+    );
+
+    renderDonations();
+}
+
+</script>
+
+</body>
+</html>
