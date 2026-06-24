@@ -28,7 +28,7 @@ const linkClass =
 const socialClass =
   "text-[#5C5146] transition-colors duration-200 hover:text-[#4a9c6e] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4a9c6e] rounded-sm cursor-pointer";
 
-import { Logo } from "./Logo";
+import { Wordmark } from "./Wordmark";
 
 export function Footer() {
   return (
@@ -36,9 +36,9 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <div className="mb-4">
-              <Logo className="h-[72px] w-auto" />
-            </div>
+            <p className="mb-4">
+              <Wordmark size="footer" />
+            </p>
             <p className="text-sm leading-relaxed text-[#5C5146]">
               Bridging the gap between surplus food and those who need it most. Together, we reduce waste and fight hunger.
             </p>

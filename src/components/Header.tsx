@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Logo } from "./Logo";
+import { Wordmark } from "./Wordmark";
 
 export type NavItem = {
   label: string;
@@ -41,9 +41,9 @@ export function Header({
         <div className="flex h-20 items-center justify-between">
           <a
             href={logoHref}
-            className="flex items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4a9c6e] rounded-sm cursor-pointer"
+            className="rounded-sm transition-colors duration-200 hover:text-[#C45E3E] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4a9c6e] cursor-pointer"
           >
-            <Logo className="h-[52px] w-auto shrink-0" />
+            <Wordmark />
           </a>
 
           <nav className="hidden items-center gap-8 md:flex" aria-label="Main navigation">

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>foodbridge — Hope Starts With You</title>
-    <link rel="icon" href="images/foodbridge-logo.svg" type="image/svg+xml">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
@@ -36,8 +36,8 @@
     <header class="sticky top-0 z-50 bg-white border-b border-[#EDE6DC]">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex items-center justify-between h-20">
-                <a href="index.html" class="flex items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4a9c6e] rounded-sm cursor-pointer">
-                    <img src="images/foodbridge-logo.svg" alt="foodbridge" class="h-[52px] w-auto shrink-0" width="220" height="104">
+                <a href="index.html" class="brand-wordmark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4a9c6e] rounded-sm cursor-pointer">
+                    foodbridge
                 </a>
 
                 <nav class="hidden md:flex items-center gap-8 text-sm font-medium" aria-label="Main navigation">
@@ -200,9 +200,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
 
                 <div>
-                    <div class="mb-4">
-                        <img src="images/foodbridge-logo.svg" alt="foodbridge" class="h-[72px] w-auto" width="220" height="104">
-                    </div>
+                    <p class="brand-wordmark brand-wordmark--footer mb-4">foodbridge</p>
                     <p class="text-[#5C5146] text-sm leading-relaxed">
                         Bridging the gap between surplus food and those who need it most.
                         Together, we reduce waste and fight hunger.
@@ -263,6 +261,20 @@
     </footer>
 
     <style>
+        .brand-wordmark {
+            font-size: 1.65rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            color: #D97757;
+            line-height: 1;
+            transition: color 0.2s ease;
+            cursor: pointer;
+        }
+        a.brand-wordmark:hover { color: #C45E3E; }
+        .brand-wordmark--footer {
+            font-size: 1.875rem;
+            cursor: default;
+        }
         .nav-link {
             color: #3D2B1F;
             transition: color 0.2s ease;
