@@ -5,4 +5,10 @@ Thumbs.db
 node_modules/
 .env
 .env.local
+.env*.local
 .cursor/
+.next/
+out/
+build/
+*.tsbuildinfo
+next-env.d.ts

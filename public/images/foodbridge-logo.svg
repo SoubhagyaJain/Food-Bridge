@@ -1,0 +1,25 @@
+<svg viewBox="0 0 220 104" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="foodbridge">
+  <g transform="translate(0, -10)">
+    <path d="M20 36C20 36 46 6 110 6C174 6 200 36 200 36" stroke="#4a9c6e" stroke-width="6.5" stroke-linecap="round"/>
+    <path d="M34 38C34 38 56 18 110 18C164 18 186 38 186 38" stroke="#4a9c6e" stroke-width="5" stroke-linecap="round"/>
+
+    <path d="M30 46C22 40 16 32 22 24C28 18 36 22 40 30" stroke="#4a9c6e" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M38 52C28 58 16 54 12 44C8 36 14 28 24 30" stroke="#4a9c6e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M190 46C198 40 204 32 198 24C192 18 184 22 180 30" stroke="#4a9c6e" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M182 52C192 58 204 54 208 44C212 36 206 28 196 30" stroke="#4a9c6e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <path d="M54 56C46 50 42 58 46 68C50 76 62 74 68 64C72 54 62 48 54 56Z" fill="#4a9c6e"/>
+    <path d="M48 58V66M52 56V64M56 56V68M60 58V72" stroke="#3d8a62" stroke-width="2" stroke-linecap="round"/>
+    <path d="M166 56C174 50 178 58 174 68C170 76 158 74 152 64C148 54 158 48 166 56Z" fill="#4a9c6e"/>
+    <path d="M172 58V66M168 56V64M164 56V68M160 58V72" stroke="#3d8a62" stroke-width="2" stroke-linecap="round"/>
+
+    <path d="M72 58H148C151 58 152 64 148 70C141 78 126 83 110 83C94 83 79 78 72 70C68 64 69 58 72 58Z" fill="#D97757"/>
+    <ellipse cx="110" cy="58" rx="38" ry="7.5" fill="#D97757"/>
+
+    <path d="M102 48C102 48 104 40 106 48" stroke="#F4C95D" stroke-width="3" stroke-linecap="round"/>
+    <path d="M110 45C110 45 112 36 114 45" stroke="#F4C95D" stroke-width="3" stroke-linecap="round"/>
+    <path d="M118 48C118 48 120 40 122 48" stroke="#F4C95D" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <text x="110" y="98" text-anchor="middle" fill="#D97757" font-family="Karla, system-ui, sans-serif" font-size="16" font-weight="700" letter-spacing="0.5">foodbridge</text>
+</svg>

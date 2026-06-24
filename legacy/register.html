@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - FoodBridge</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <nav class="inner-nav">
+        <a href="index.html" class="logo">FoodBridge</a>
+        <a href="login.html">Login</a>
+    </nav>
+
+    <div class="login-container">
+
+        <div class="login-box">
+
+            <h1>Create Account</h1>
+
+            <p>Join FoodBridge today.</p>
+
+            <form id="registerForm">
+
+    <input
+        type="text"
+        id="fullName"
+        placeholder="Full Name">
+
+    <input
+        type="email"
+        id="registerEmail"
+        placeholder="Email">
+
+    <input
+        type="password"
+        id="registerPassword"
+        placeholder="Password">
+
+    <select id="role">
+        <option>Select Role</option>
+        <option>Donor</option>
+        <option>NGO</option>
+        <option>Volunteer</option>
+    </select>
+
+    <p id="register-message"></p>
+
+    <button type="submit">
+        Register
+    </button>
+
+</form>
+            <p class="register-link">
+                Already have an account?
+                <a href="login.html">Login</a>
+            </p>
+
+
+        </div>
+
+    </div>
+    <script>
+
+const registerForm =
+document.getElementById("registerForm");
+
+registerForm.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const name =
+    document.getElementById("fullName").value;
+
+    const email =
+    document.getElementById("registerEmail").value;
+
+    const password =
+    document.getElementById("registerPassword").value;
+
+    const role =
+    document.getElementById("role").value;
+
+    const message =
+    document.getElementById("register-message");
+
+    if(
+        name === "" ||
+        email === "" ||
+        password === "" ||
+        role === "Select Role"
+    ){
+        message.className = "msg-error";
+        message.innerText = "Please fill all fields";
+        return;
+    }
+
+    const user = {
+        name,
+        email,
+        password,
+        role
+    };
+
+    localStorage.setItem(
+        "registeredUser",
+        JSON.stringify(user)
+    );
+
+    message.className = "msg-success";
+    message.innerText = "Registration Successful!";
+
+});
+
+</script>
+
+</body>
+
+</html>
