@@ -9,7 +9,7 @@ type Pickup = {
 export function PickupList({ pickups }: { pickups: Pickup[] }) {
   if (pickups.length === 0) {
     return (
-      <p className="rounded-xl border border-dashed border-[#EDE6DC] p-8 text-center text-[#5C5146]">
+      <p className="rounded-xl border border-dashed border-border p-8 text-center text-muted">
         No pickup assignments yet.
       </p>
     );
@@ -22,7 +22,7 @@ export function PickupList({ pickups }: { pickups: Pickup[] }) {
           <CardHeader>
             <CardTitle className="text-base">{pickup.address}</CardTitle>
           </CardHeader>
-          <CardContent className="text-sm text-[#5C5146]">Status: {pickup.status}</CardContent>
+          <CardContent className="text-sm text-muted">Status: {pickup.status}</CardContent>
         </Card>
       ))}
     </div>

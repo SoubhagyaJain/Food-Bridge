@@ -31,7 +31,7 @@ export default function RegisterPage() {
             <select
               id="role"
               name="role"
-              className="flex h-10 w-full rounded-lg border border-[#EDE6DC] bg-white px-3 text-sm"
+              className="flex h-10 w-full rounded-lg border border-border bg-card px-3 text-sm text-foreground"
               required
             >
               {ROLES.map((role) => (
@@ -43,7 +43,7 @@ export default function RegisterPage() {
           </div>
           <Button type="submit" className="w-full">Create account</Button>
         </form>
-        <p className="mt-4 text-center text-sm text-[#5C5146]">
+        <p className="mt-4 text-center text-sm text-muted">
           Already have an account?{" "}
           <Link href="/login" className="font-medium text-brand-sage hover:underline">
             Sign in

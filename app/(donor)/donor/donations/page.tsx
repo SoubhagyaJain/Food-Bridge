@@ -10,7 +10,7 @@ export default function DonorDonationsPage() {
           <Link href="/donor/donations/new">New donation</Link>
         </Button>
       </div>
-      <p className="rounded-xl border border-dashed border-[#EDE6DC] p-8 text-center text-[#5C5146]">
+      <p className="rounded-xl border border-dashed border-border p-8 text-center text-muted">
         No donations yet. Post your first donation to get started.
       </p>
     </div>

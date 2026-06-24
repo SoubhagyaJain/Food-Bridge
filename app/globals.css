@@ -3,11 +3,35 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --background: #f5f0e8;
+    --foreground: #3c2f2f;
+    --card: #ffffff;
+    --card-muted: #fdf8f3;
+    --muted: #5c5146;
+    --muted-soft: #6b5e52;
+    --border: #ede6dc;
+    --border-soft: #e8e0d5;
+    --accent-hover: #f8f4ef;
+  }
+
+  .dark {
+    --background: #14100e;
+    --foreground: #f5f0e8;
+    --card: #1f1916;
+    --card-muted: #2a211c;
+    --muted: #b8aea3;
+    --muted-soft: #9a8f84;
+    --border: #3d322c;
+    --border-soft: #342b26;
+    --accent-hover: #2a211c;
+  }
+
   html {
     scroll-behavior: smooth;
   }
 
   body {
-    @apply bg-brand-cream font-sans text-brand-dark antialiased;
+    @apply bg-background font-sans text-foreground antialiased;
   }
 }

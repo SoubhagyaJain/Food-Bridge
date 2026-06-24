@@ -12,7 +12,7 @@ export function DonorDashboardStats() {
       {stats.map((stat) => (
         <Card key={stat.label}>
           <CardHeader>
-            <CardTitle className="text-sm font-medium text-[#5C5146]">{stat.label}</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted">{stat.label}</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-3xl font-bold">{stat.value}</p>

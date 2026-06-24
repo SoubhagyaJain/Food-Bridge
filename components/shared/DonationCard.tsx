@@ -18,7 +18,7 @@ export function DonationCard({ donation, href }: DonationCardProps) {
           <StatusBadge status={donation.status} />
         </div>
       </CardHeader>
-      <CardContent className="space-y-2 text-sm text-[#5C5146]">
+      <CardContent className="space-y-2 text-sm text-muted">
         <p>{donation.foodType} · {donation.quantity} {donation.unit}</p>
         <p>{donation.pickupAddress}</p>
         <p>Expires {formatDate(donation.expiresAt)}</p>

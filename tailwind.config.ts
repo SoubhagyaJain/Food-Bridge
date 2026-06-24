@@ -9,6 +9,23 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        card: {
+          DEFAULT: "var(--card)",
+          muted: "var(--card-muted)",
+        },
+        muted: {
+          DEFAULT: "var(--muted)",
+          soft: "var(--muted-soft)",
+        },
+        border: {
+          DEFAULT: "var(--border)",
+          soft: "var(--border-soft)",
+        },
+        accent: {
+          hover: "var(--accent-hover)",
+        },
         brand: {
           dark: "#3c2f2f",
           panel: "#2a211c",

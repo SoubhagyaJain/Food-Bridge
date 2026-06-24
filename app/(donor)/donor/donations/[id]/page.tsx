@@ -21,7 +21,7 @@ export default async function DonorDonationDetailPage({
         <h1 className="text-3xl font-bold">{donation.title}</h1>
         <StatusBadge status={donation.status} />
       </div>
-      <p className="text-[#5C5146]">{donation.description ?? "No description provided."}</p>
+      <p className="text-muted">{donation.description ?? "No description provided."}</p>
       <Map address={donation.pickupAddress} />
     </div>
   );

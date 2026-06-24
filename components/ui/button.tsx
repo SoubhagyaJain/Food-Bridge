@@ -9,8 +9,8 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: "bg-brand-coral text-white hover:bg-brand-coral-hover focus-visible:outline-brand-coral",
-        outline: "border border-[#EDE6DC] bg-white text-[#3D2B1F] hover:bg-[#F8F4EF]",
-        ghost: "text-[#3D2B1F] hover:bg-[#F8F4EF]",
+        outline: "border border-border bg-card text-foreground hover:bg-accent-hover",
+        ghost: "text-foreground hover:bg-accent-hover",
         link: "text-brand-sage underline-offset-4 hover:underline",
       },
       size: {

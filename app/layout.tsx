@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Karla, Playfair_Display } from "next/font/google";
+import { ThemeProvider } from "@/components/shared/ThemeProvider";
 import "./globals.css";
 
 const karla = Karla({
@@ -20,8 +21,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className={`${karla.variable} ${playfair.variable} font-sans`}>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${karla.variable} ${playfair.variable} font-sans`}>
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   );
 }

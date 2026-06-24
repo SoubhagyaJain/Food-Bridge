@@ -23,7 +23,7 @@ export default function LoginPage() {
           </div>
           <Button type="submit" className="w-full">Sign in</Button>
         </form>
-        <p className="mt-4 text-center text-sm text-[#5C5146]">
+        <p className="mt-4 text-center text-sm text-muted">
           No account?{" "}
           <Link href="/register" className="font-medium text-brand-sage hover:underline">
             Register
