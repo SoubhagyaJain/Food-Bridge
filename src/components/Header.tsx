@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Logo } from "./Logo";
 
 export type NavItem = {
   label: string;
@@ -12,22 +13,6 @@ const DEFAULT_NAV: NavItem[] = [
   { label: "Impact", href: "#impact" },
   { label: "Volunteer", href: "/login" },
 ];
-
-function LogoMark() {
-  return (
-    <svg className="h-11 w-11 shrink-0" viewBox="0 0 44 44" fill="none" aria-hidden="true">
-      <rect width="44" height="44" rx="12" fill="#F8F4EF" />
-      <path d="M8 28h28" stroke="#3D2B1F" strokeWidth="2" strokeLinecap="round" />
-      <path
-        d="M12 28v-4c0-3.3 2.7-6 6-6s6 2.7 6 6v4M20 28v-6c0-2.2 1.8-4 4-4s4 1.8 4 4v6"
-        stroke="#4a9c6e"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-      <path d="M22 14c1.5-2.5 5-2.5 6.5 0" stroke="#D97757" strokeWidth="2" strokeLinecap="round" />
-    </svg>
-  );
-}
 
 export type HeaderProps = {
   logoHref?: string;
@@ -56,10 +41,9 @@ export function Header({
         <div className="flex h-20 items-center justify-between">
           <a
             href={logoHref}
-            className="flex items-center gap-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4a9c6e] rounded-sm cursor-pointer"
+            className="flex items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4a9c6e] rounded-sm cursor-pointer"
           >
-            <LogoMark />
-            <span className="font-serif text-xl font-semibold text-[#3D2B1F]">Food Bridge</span>
+            <Logo className="h-14 w-auto shrink-0" />
           </a>
 
           <nav className="hidden items-center gap-8 md:flex" aria-label="Main navigation">

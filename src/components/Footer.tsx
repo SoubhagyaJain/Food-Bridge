@@ -28,14 +28,16 @@ const linkClass =
 const socialClass =
   "text-[#5C5146] transition-colors duration-200 hover:text-[#4a9c6e] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4a9c6e] rounded-sm cursor-pointer";
 
+import { Logo } from "./Logo";
+
 export function Footer() {
   return (
     <footer id="contact" className="border-t border-[#E8E0D5] bg-[#FDF8F3] pb-8 pt-16">
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <div className="mb-4 flex items-center gap-2">
-              <span className="font-serif text-2xl font-semibold text-[#3D2B1F]">Food Bridge</span>
+            <div className="mb-4">
+              <Logo className="h-16 w-auto" />
             </div>
             <p className="text-sm leading-relaxed text-[#5C5146]">
               Bridging the gap between surplus food and those who need it most. Together, we reduce waste and fight hunger.
@@ -79,7 +81,7 @@ export function Footer() {
         </div>
 
         <div className="mt-16 flex flex-col items-center justify-between border-t border-[#E8E0D5] pt-8 text-sm text-[#6B5E52] md:flex-row">
-          <p>&copy; 2026 Food Bridge. All rights reserved.</p>
+          <p>&copy; 2026 foodbridge. All rights reserved.</p>
           <div className="mt-4 flex gap-6 md:mt-0">
             <a href="#" className={linkClass}>Privacy Policy</a>
             <a href="#" className={linkClass}>Terms of Service</a>
