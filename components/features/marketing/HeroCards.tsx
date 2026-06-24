@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export function HeroCards() {
   return (
-    <section className="relative z-30 mx-auto -mt-16 max-w-7xl px-6 pb-20 md:px-12">
+    <section className="mx-auto max-w-7xl px-6 pb-20 md:px-12">
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         <div className="flex min-h-[220px] flex-col justify-between rounded-2xl bg-[#e8d9b8] p-8 md:p-9">
           <p className="text-xl font-semibold leading-snug text-[#3f2e1e]">

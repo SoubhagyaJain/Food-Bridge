@@ -1,33 +1,52 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export function Hero() {
   return (
-    <section className="relative flex h-[92vh] min-h-[700px] items-center overflow-hidden">
-      <Image
-        src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070"
-        alt="Happy children reaching out - foodbridge"
-        fill
-        priority
-        className="object-cover"
-      />
-      <div className="absolute inset-0 bg-black/45" />
+    <section className="bg-card-muted">
+      <div className="mx-auto max-w-7xl px-6 pb-20 pt-16">
+        <div className="grid items-center gap-12 md:grid-cols-2">
+          <div>
+            <h1 className="text-5xl font-semibold leading-tight tracking-tight text-foreground md:text-6xl">
+              When We Come Together,
+              <br />
+              <span className="text-brand-coral">No One Goes Hungry</span>
+            </h1>
 
-      <div className="relative z-10 mx-auto w-full max-w-5xl px-6 md:px-12">
-        <div className="max-w-3xl">
-          <h1 className="text-5xl font-bold leading-[1.05] tracking-[-2px] text-white sm:text-6xl md:text-7xl lg:text-[82px]">
-            Help The <span className="text-[#f4c95f]">Children</span> in Need
-          </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/90 md:text-xl">
-            Bridging the gap to ensure no child goes hungry. Join us in nourishing futures today.
-          </p>
-          <div className="mt-8">
-            <Link
-              href="#how-it-works"
-              className="inline-block rounded-full border-2 border-white px-8 py-3 font-medium text-white transition-all duration-300 hover:bg-white hover:text-black"
-            >
-              View More
-            </Link>
+            <p className="mt-6 max-w-lg text-lg text-muted">
+              FoodBridge connects people who have extra food with those who need it — through compassion
+              and community.
+            </p>
+
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Button size="lg" className="px-8 py-3.5" asChild>
+                <Link href="/login">Donate Now</Link>
+              </Button>
+              <Button size="lg" variant="outline" className="px-8 py-3.5" asChild>
+                <Link href="/register">Become a Volunteer</Link>
+              </Button>
+            </div>
+
+            <p className="mt-5 text-sm text-muted-soft">Join 500+ volunteers making a real difference every week.</p>
+          </div>
+
+          <div className="relative mt-10 md:mt-0">
+            <div className="relative h-[420px] w-full overflow-hidden rounded-3xl shadow-xl shadow-black/10 dark:shadow-black/30">
+              <Image
+                src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070"
+                alt="Community coming together to help with food donations"
+                fill
+                priority
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+
+            <div className="absolute bottom-6 left-6 flex items-center gap-2 rounded-full bg-card/90 px-4 py-2 shadow-md backdrop-blur">
+              <div className="h-2.5 w-2.5 animate-pulse rounded-full bg-brand-sage" aria-hidden="true" />
+              <span className="text-sm font-medium text-foreground">Join 2,300+ Donors</span>
+            </div>
           </div>
         </div>
       </div>
