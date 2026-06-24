@@ -32,40 +32,53 @@
 </head>
 <body class="font-sans bg-brand-cream text-brand-dark antialiased">
 
-    <header class="sticky top-0 z-50 bg-brand-dark text-white border-b border-white/10 shadow-md">
-        <div class="max-w-[1400px] mx-auto px-5 lg:px-8 h-[60px] flex items-center justify-between gap-4">
-            <a href="index.html" class="font-serif text-[1.35rem] font-semibold tracking-wide hover:text-brand-gold transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-gold cursor-pointer">
-                Food Bridge
-            </a>
-
-            <nav class="hidden xl:flex items-center gap-7 text-[13px] font-medium" aria-label="Main navigation">
-                <a href="#home" class="nav-link">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#programs" class="nav-link">Popular Charity</a>
-                <a href="#impact" class="nav-link">Services</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </nav>
-
-            <div class="flex items-center gap-3">
-                <a href="login.html" class="hidden sm:inline-flex shrink-0 items-center justify-center rounded-full bg-brand-gold hover:bg-brand-gold-hover text-brand-dark text-[11px] font-bold uppercase tracking-wider px-5 py-2 transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white cursor-pointer">
-                    Donate Now
+    <header class="sticky top-0 z-50 bg-white border-b border-[#EDE6DC]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center justify-between h-20">
+                <a href="index.html" class="flex items-center gap-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4a9c6e] rounded-sm cursor-pointer">
+                    <svg class="h-11 w-11 shrink-0" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+                        <rect width="44" height="44" rx="12" fill="#F8F4EF"/>
+                        <path d="M8 28h28" stroke="#3D2B1F" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M12 28v-4c0-3.3 2.7-6 6-6s6 2.7 6 6v4M20 28v-6c0-2.2 1.8-4 4-4s4 1.8 4 4v6" stroke="#4a9c6e" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M22 14c1.5-2.5 5-2.5 6.5 0" stroke="#D97757" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span class="font-serif text-xl font-semibold text-[#3D2B1F]">Food Bridge</span>
                 </a>
-                <button type="button" id="menu-toggle" class="xl:hidden inline-flex items-center justify-center w-10 h-10 rounded-md hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-gold cursor-pointer" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
-                    <svg class="w-5 h-5 menu-icon-open" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-                    <svg class="w-5 h-5 menu-icon-close hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+
+                <nav class="hidden md:flex items-center gap-8 text-sm font-medium" aria-label="Main navigation">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#programs" class="nav-link">How it Works</a>
+                    <a href="#impact" class="nav-link">Impact</a>
+                    <a href="login.html" class="nav-link">Volunteer</a>
+                </nav>
+
+                <div class="hidden md:flex items-center gap-3">
+                    <a href="login.html" class="px-5 py-2 text-sm font-medium text-[#3D2B1F] hover:bg-[#F8F4EF] rounded-full transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4a9c6e] cursor-pointer">
+                        Login
+                    </a>
+                    <a href="login.html" class="px-6 py-2.5 bg-[#D97757] hover:bg-[#C45E3E] text-white text-sm font-semibold rounded-full transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D97757] cursor-pointer">
+                        Donate Now
+                    </a>
+                </div>
+
+                <button type="button" id="menu-toggle" class="md:hidden p-2 text-[#3D2B1F] hover:bg-[#F8F4EF] rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4a9c6e] cursor-pointer" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+                    <svg class="w-6 h-6 menu-icon-open" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                    <svg class="w-6 h-6 menu-icon-close hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                 </button>
             </div>
         </div>
 
-        <nav id="mobile-nav" class="hidden xl:hidden border-t border-white/10 bg-brand-dark px-5 py-4" aria-label="Mobile navigation">
+        <nav id="mobile-nav" class="hidden md:hidden border-t border-[#EDE6DC] bg-white px-6 py-4" aria-label="Mobile navigation">
             <ul class="flex flex-col gap-1">
                 <li><a href="#home" class="mobile-nav-link">Home</a></li>
                 <li><a href="#about" class="mobile-nav-link">About</a></li>
-                <li><a href="#programs" class="mobile-nav-link">Popular Charity</a></li>
-                <li><a href="#impact" class="mobile-nav-link">Services</a></li>
-                <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
-                <li class="pt-2 sm:hidden">
-                    <a href="login.html" class="inline-flex w-full items-center justify-center rounded-full bg-brand-gold hover:bg-brand-gold-hover text-brand-dark text-[11px] font-bold uppercase tracking-wider px-5 py-2.5 transition-colors duration-200 cursor-pointer">Donate Now</a>
+                <li><a href="#programs" class="mobile-nav-link">How it Works</a></li>
+                <li><a href="#impact" class="mobile-nav-link">Impact</a></li>
+                <li><a href="login.html" class="mobile-nav-link">Volunteer</a></li>
+                <li class="flex gap-3 pt-4">
+                    <a href="login.html" class="flex-1 inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-[#3D2B1F] hover:bg-[#F8F4EF] rounded-full transition-colors duration-200 cursor-pointer">Login</a>
+                    <a href="login.html" class="flex-1 inline-flex items-center justify-center px-5 py-2.5 bg-[#D97757] hover:bg-[#C45E3E] text-white text-sm font-semibold rounded-full transition-colors duration-200 cursor-pointer">Donate Now</a>
                 </li>
             </ul>
         </nav>
@@ -106,7 +119,7 @@
         </section>
 
         <!-- Three cards -->
-        <section id="programs" class="relative z-30 mx-auto -mt-16 max-w-7xl px-6 md:px-12 pb-20">
+        <section id="programs" class="relative z-30 mx-auto -mt-16 max-w-7xl px-6 md:px-12 pb-20 scroll-mt-24">
             <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
                 <div class="flex min-h-[220px] flex-col justify-between rounded-2xl bg-[#e8d9b8] p-8 md:p-9">
                     <p class="text-xl font-semibold leading-snug text-[#3f2e1e]">
@@ -132,7 +145,7 @@
         </section>
 
         <!-- Building Bridges Together -->
-        <section id="about" class="mx-auto max-w-7xl px-6 py-16 md:px-12 md:py-20 bg-white">
+        <section id="about" class="mx-auto max-w-7xl px-6 py-16 md:px-12 md:py-20 bg-white scroll-mt-24">
             <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
                 <div class="relative">
                     <img
@@ -153,7 +166,7 @@
                         <p>Our heart lies in protecting and nurturing children. Thanks to the deep generosity of our sponsors, we are able to provide more than just financial aid—we deliver hope. From bringing essential humanitarian relief to offering legal advocacy and emotional support, we wrap our arms around vulnerable families worldwide. Whether we are supporting a struggling household or breathing new life into under-resourced schools and kindergartens, our mission remains the same: to build a bridge to a brighter, safer future where every child can thrive.</p>
                     </div>
 
-                    <div class="mt-10 grid grid-cols-3 gap-4 sm:gap-6">
+                    <div id="impact" class="mt-10 grid grid-cols-3 gap-4 sm:gap-6 scroll-mt-24">
                         <div class="text-center">
                             <div class="flex justify-center mb-3">
                                 <div class="p-3 bg-[#f4f4f4] rounded-full">
@@ -256,13 +269,13 @@
 
     <style>
         .nav-link {
-            color: rgba(255, 255, 255, 0.9);
+            color: #3D2B1F;
             transition: color 0.2s ease;
             cursor: pointer;
         }
-        .nav-link:hover { color: #c5a26f; }
+        .nav-link:hover { color: #4a9c6e; }
         .nav-link:focus-visible {
-            outline: 2px solid #c5a26f;
+            outline: 2px solid #4a9c6e;
             outline-offset: 2px;
             border-radius: 2px;
         }
@@ -272,13 +285,13 @@
             border-radius: 0.375rem;
             font-size: 0.875rem;
             font-weight: 500;
-            color: rgba(255, 255, 255, 0.9);
+            color: #3D2B1F;
             transition: background-color 0.2s ease, color 0.2s ease;
             cursor: pointer;
         }
         .mobile-nav-link:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: #c5a26f;
+            background-color: #F8F4EF;
+            color: #4a9c6e;
         }
         .hero-arrow {
             position: absolute;
