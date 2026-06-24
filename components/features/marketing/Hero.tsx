@@ -23,7 +23,7 @@ export function Hero() {
           </p>
           <div className="mt-8">
             <Link
-              href="#programs"
+              href="#how-it-works"
               className="inline-block rounded-full border-2 border-white px-8 py-3 font-medium text-white transition-all duration-300 hover:bg-white hover:text-black"
             >
               View More
