@@ -117,3 +117,14 @@ main ← feature/volunteer-portal-and-backend-docs (this PR)
 ```
 
 Single PR containing volunteer portal, docs, dark mode, and dev tooling. Future work should split by feature area.
+
+## CI pipeline
+
+`.github/workflows/ci.yml` runs on every PR and push to `main`:
+
+1. `npm ci`
+2. `npm run lint`
+3. `npm run typecheck`
+4. `npm run build` (placeholder env vars — no GitHub secrets needed)
+
+Future additions: `format:check` (after Prettier is applied repo-wide), optional Supabase migration lint.

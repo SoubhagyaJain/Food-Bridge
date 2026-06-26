@@ -630,6 +630,18 @@ foodbridge/
 | `npm run typecheck` | `tsc --noEmit` |
 | `npm run gen:types` | Regenerate `types/database.types.ts` from Supabase |
 
+### Continuous Integration
+
+GitHub Actions runs on every push to `main` and on pull requests:
+
+| Step | Command |
+|------|---------|
+| Lint | `npm run lint` |
+| Typecheck | `npm run typecheck` |
+| Build | `npm run build` |
+
+Workflow file: `.github/workflows/ci.yml`. CI uses placeholder Supabase env vars — no secrets required for the build to pass.
+
 ---
 
 ## Known gaps & roadmap
