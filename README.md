@@ -26,8 +26,9 @@ This document explains the **backend architecture** end to end: database schema,
 14. [Supabase setup](#supabase-setup)
 15. [Project structure](#project-structure)
 16. [Scripts & commands](#scripts--commands)
-17. [Known gaps & roadmap](#known-gaps--roadmap)
-18. [Contributing](#contributing)
+17. [How we built the CI pipeline](#how-we-built-the-ci-pipeline)
+18. [Known gaps & roadmap](#known-gaps--roadmap)
+19. [Contributing](#contributing)
 
 ---
 
@@ -630,7 +631,7 @@ foodbridge/
 | `npm run typecheck` | `tsc --noEmit` |
 | `npm run gen:types` | Regenerate `types/database.types.ts` from Supabase |
 
-### Continuous Integration
+### Continuous Integration (summary)
 
 GitHub Actions (`.github/workflows/ci.yml`) runs on every push to `main` and on pull requests:
 
@@ -641,6 +642,205 @@ GitHub Actions (`.github/workflows/ci.yml`) runs on every push to `main` and on 
 | Production build | `npm run build` |
 
 CI uses placeholder Supabase env vars — no GitHub secrets required. You can also trigger a run manually from the Actions tab (`workflow_dispatch`).
+
+See [How we built the CI pipeline](#how-we-built-the-ci-pipeline) for the full thought process, decisions, and step-by-step walkthrough.
+
+---
+
+## How we built the CI pipeline
+
+This section documents **why** we added CI, **what we decided before writing a single line of YAML**, and **exactly how the pipeline was created** — so any contributor can understand, extend, or replicate it.
+
+### 1. The goal
+
+foodbridge is a Next.js app with a real Supabase backend. Without CI, broken code only shows up when someone runs `npm run dev` locally — or worse, after a merge to `main`. The goal was a pipeline that answers one question on every PR:
+
+> *Can this code lint cleanly, type-check, and produce a production build?*
+
+We did **not** aim for full E2E testing or deploy automation in v1. Those come later when the core flows are stable.
+
+### 2. Audit before building (what we checked first)
+
+Before creating `.github/workflows/ci.yml`, we inspected what the project already had:
+
+| Question | Finding | Implication |
+|----------|---------|-------------|
+| What npm scripts exist? | `lint`, `typecheck`, `build`, `format:check`, `dev`, `clean` | CI should call scripts that already exist — no new tooling |
+| Do they pass locally? | `lint` ✅ · `typecheck` ✅ · `build` ✅ | Safe to gate merges on these three |
+| Does `format:check` pass? | ❌ 125 files need Prettier | **Excluded** from v1 CI — would block every PR until a format pass |
+| Does build need real Supabase? | No — `env.ts` falls back to placeholders when vars are missing | CI can build **without GitHub secrets** |
+| What Node version? | Project uses modern Next 15 / React 19 | Node **20** LTS on `ubuntu-latest` |
+| Is there existing CI? | No `.github/workflows/` on `main` | Greenfield setup |
+| What port does dev use? | **3002** (not 3000) | `NEXT_PUBLIC_APP_URL` in CI set to `http://localhost:3002` |
+
+This audit is the most important step. CI should mirror what developers already run before opening a PR — not invent a parallel workflow.
+
+### 3. Decisions we made (and what we rejected)
+
+#### ✅ Included in v1
+
+| Decision | Reason |
+|----------|--------|
+| **GitHub Actions** | Native to the repo (`SoubhagyaJain/Food-Bridge`), free for open source, zero extra services |
+| **Three parallel jobs** (lint · typecheck · build) | Faster feedback than one sequential job; failures are isolated ("TypeScript failed" vs "build failed") |
+| **`npm ci` not `npm install`** | Reproducible installs from `package-lock.json` — standard for CI |
+| **Placeholder env vars in the build job** | `NEXT_PUBLIC_*` are baked in at build time; placeholders are enough to compile pages |
+| **Triggers: `push` + `pull_request` on `main`** | Protects the default branch; runs on every PR |
+| **`workflow_dispatch`** | Lets maintainers re-run CI manually from the Actions tab without an empty commit |
+| **Concurrency + cancel-in-progress** | Stops wasting minutes when someone pushes 3 fixes in a row to the same PR |
+| **`ci-success` gate job** | Single green check that means *all* jobs passed — useful for branch protection rules |
+| **Timeouts** (10 min lint/typecheck, 15 min build) | Prevents hung jobs from burning Actions minutes |
+
+#### ❌ Deliberately excluded from v1
+
+| Rejected | Why |
+|----------|-----|
+| `npm run format:check` | 125 files fail today; would block all PRs until `npm run format` is run repo-wide |
+| Real Supabase secrets in CI | Build does not need a live database; secrets add rotation risk and setup friction |
+| E2E / Playwright tests | No test suite exists yet; adding tests is a separate project |
+| Deploy job (Vercel) | Deployment is manual for now; deploy CI comes when hosting is finalized |
+| Supabase migration lint | SQL files are run manually in the dashboard; automated migration checks are a future enhancement |
+| Matrix builds (Node 18 + 20 + 22) | One LTS version is enough for a small team; matrix adds time without proportional value |
+
+### 4. Thought process (how we designed the workflow)
+
+```mermaid
+flowchart TD
+    A[PR opened or push to main] --> B{What can break production?}
+    B --> C[Lint errors - style and Next.js rules]
+    B --> D[Type errors - TypeScript]
+    B --> E[Build errors - missing imports, bad env, webpack]
+    C --> F[Job: lint]
+    D --> G[Job: typecheck]
+    E --> H[Job: build with placeholder env]
+    F --> I[ci-success gate]
+    G --> I
+    H --> I
+    I --> J{All passed?}
+    J -->|yes| K[Merge safe]
+    J -->|no| L[Fix before merge]
+```
+
+**Principle:** each job is independent and cheap. Lint and typecheck do not need a production build artifact. Build is the heaviest step — it runs in parallel with the others so total wall-clock time stays low.
+
+**Principle:** fail fast at the PR level. A contributor sees three named jobs in GitHub — they know immediately whether the problem is ESLint, types, or the Next.js compiler.
+
+### 5. Step-by-step — how the pipeline was created
+
+#### Step 1 — Verify locally
+
+```bash
+npm run lint       # must pass
+npm run typecheck  # must pass
+npm run build      # must pass (uses .env.local or placeholders)
+```
+
+All three passed before any YAML was written. **Never add a CI step you have not run locally.**
+
+#### Step 2 — Create the workflow file
+
+Created `.github/workflows/ci.yml` with:
+
+- Workflow name: `CI`
+- Runner: `ubuntu-latest`
+- Node: `20` with `cache: npm` for faster installs
+
+#### Step 3 — Wire triggers
+
+```yaml
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+```
+
+- **`push` / `pull_request`** — automatic on every change targeting `main`
+- **`workflow_dispatch`** — manual re-run from GitHub UI
+
+#### Step 4 — Add the three check jobs
+
+Each job follows the same skeleton:
+
+1. `actions/checkout@v4` — clone the repo
+2. `actions/setup-node@v4` — Node 20 + npm cache
+3. `npm ci` — install from lockfile
+4. Run one script (`lint`, `typecheck`, or `build`)
+
+The **build** job sets env vars explicitly so the outcome does not depend on whatever happens to be in a developer's `.env.local`:
+
+```yaml
+env:
+  NEXT_PUBLIC_SUPABASE_URL: https://example.supabase.co
+  NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ci-placeholder-publishable-key
+  NEXT_PUBLIC_APP_URL: http://localhost:3002
+```
+
+#### Step 5 — Add the success gate
+
+The `ci-success` job uses `needs: [lint, typecheck, build]` and `if: always()` so it runs even when a sibling job fails — then exits non-zero if any result is not `success`. This gives branch protection a single required check name: **CI passed**.
+
+#### Step 6 — Commit and push to `main`
+
+```bash
+git add .github/workflows/ci.yml README.md
+git commit -m "ci: add GitHub Actions pipeline (lint, typecheck, build)"
+git push origin main
+```
+
+After push, GitHub Actions picked up the workflow automatically. View runs at:
+
+**https://github.com/SoubhagyaJain/Food-Bridge/actions**
+
+#### Step 7 — Document in README
+
+This section (and the summary under [Scripts & commands](#scripts--commands)) was added so the pipeline is not tribal knowledge — anyone reading the repo understands what runs and why.
+
+### 6. What the final pipeline looks like
+
+```
+.github/workflows/ci.yml
+│
+├── Trigger: push to main | PR to main | manual dispatch
+├── Concurrency: cancel older runs on same branch
+│
+├── Job: lint          → npm run lint
+├── Job: typecheck     → npm run typecheck
+├── Job: build         → npm run build (placeholder env)
+│
+└── Job: ci-success    → fails if any job above failed
+```
+
+### 7. How to extend CI later
+
+| Enhancement | When to add | What to do |
+|-------------|-------------|------------|
+| **Prettier** | After `npm run format` is applied repo-wide | Add job: `npm run format:check` |
+| **E2E tests** | After Playwright/Cypress suite exists | Add job with test DB or mocked Supabase |
+| **Deploy preview** | When Vercel is connected | Add job on PR with `VERCEL_TOKEN` secret |
+| **Migration check** | When SQL lint tool is chosen | Add job that validates `supabase/migrations/*.sql` syntax |
+| **Required checks** | When team grows | GitHub → Settings → Branches → require **CI passed** |
+
+### 8. Troubleshooting CI failures
+
+| Symptom | Likely cause | Fix |
+|---------|--------------|-----|
+| ESLint job fails | New code violates lint rules | Run `npm run lint` locally, fix errors |
+| TypeScript job fails | Type error in `types/` or components | Run `npm run typecheck` locally |
+| Build job fails | Missing import, bad `next.config`, env issue | Run `npm run build` locally with same placeholder env |
+| CI passes locally but fails in Actions | Different Node version or stale lockfile | Use Node 20; run `npm install` and commit `package-lock.json` |
+| Build fails with Supabase error | Code calls `requireEnv()` at build time | Use `env` export with fallbacks, or set CI env vars |
+
+### 9. Quick reference — reproduce the pipeline yourself
+
+If you are setting up CI on a fork or a new branch:
+
+1. Confirm `npm run lint && npm run typecheck && npm run build` pass locally
+2. Copy `.github/workflows/ci.yml` from this repo
+3. Push to `main` — Actions activates automatically
+4. Open a test PR and confirm all four jobs go green
+5. (Optional) Enable branch protection requiring **CI passed**
 
 ---
 
