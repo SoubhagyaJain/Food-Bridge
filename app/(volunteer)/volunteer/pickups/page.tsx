@@ -1,10 +1,32 @@
-import { PickupList } from "@/components/features/volunteer/PickupList";
+import { AvailablePickupsClient } from "@/components/features/volunteer/AvailablePickupsClient";
+import { requireProfile } from "@/lib/auth/session";
+import { getNearbyOpenPickups, getOpenPickups } from "@/server/queries/pickup.queries";
+import { getVolunteerProfile } from "@/server/queries/volunteer.queries";
 
-export default function VolunteerPickupsPage() {
+export default async function VolunteerPickupsPage() {
+  const profile = await requireProfile();
+  const volunteerProfile = await getVolunteerProfile(profile.id);
+
+  let pickups = await getOpenPickups();
+
+  if (volunteerProfile.homeLat != null && volunteerProfile.homeLng != null) {
+    try {
+      pickups = await getNearbyOpenPickups(
+        volunteerProfile.homeLat,
+        volunteerProfile.homeLng,
+        volunteerProfile.serviceRadiusKm
+      );
+    } catch {
+      pickups = await getOpenPickups();
+    }
+  }
+
   return (
-    <div className="space-y-6">
-      <h1 className="text-3xl font-bold">Pickup Assignments</h1>
-      <PickupList pickups={[]} />
-    </div>
+    <AvailablePickupsClient
+      initialPickups={pickups}
+      profileLat={volunteerProfile.homeLat}
+      profileLng={volunteerProfile.homeLng}
+      profileRadiusKm={volunteerProfile.serviceRadiusKm}
+    />
   );
 }

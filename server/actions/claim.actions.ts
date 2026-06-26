@@ -1,7 +1,9 @@
 "use server";
 
+import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { createClaimSchema } from "@/lib/validations/claim";
+import { isRpcSuccess, rpcErrorMessage } from "@/lib/rpc/errors";
 import { createClient } from "@/lib/supabase/server";
 
 export async function createClaimAction(formData: FormData) {
@@ -21,17 +23,25 @@ export async function createClaimAction(formData: FormData) {
     return { error: { form: ["You must be logged in to claim a donation."] } };
   }
 
-  const { error } = await supabase.from("claims").insert({
-    donation_id: parsed.data.donationId,
-    ngo_id: user.id,
-    notes: parsed.data.notes ?? null,
-    status: "pending",
+  const { data, error } = await supabase.rpc("claim_donation", {
+    p_donation_id: parsed.data.donationId,
+    p_notes: parsed.data.notes ?? null,
   });
 
   if (error) {
     return { error: { form: [error.message] } };
   }
 
+  if (!isRpcSuccess(data)) {
+    const code =
+      typeof data === "object" && data && "error_code" in data
+        ? String((data as { error_code: string }).error_code)
+        : undefined;
+    return { error: { form: [rpcErrorMessage(code)] } };
+  }
+
   revalidatePath("/ngo/claims");
-  return { success: true };
+  revalidatePath("/ngo/donations");
+  revalidatePath("/volunteer/pickups");
+  redirect("/ngo/claims");
 }

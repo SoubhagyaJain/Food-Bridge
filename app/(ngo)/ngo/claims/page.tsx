@@ -1,10 +1,15 @@
-export default function NgoClaimsPage() {
+import { requireProfile } from "@/lib/auth/session";
+import { getClaimsByNgo } from "@/server/queries/claim.queries";
+import { ClaimsList } from "@/components/features/ngo/ClaimsList";
+
+export default async function NgoClaimsPage() {
+  const profile = await requireProfile();
+  const claims = await getClaimsByNgo(profile.id);
+
   return (
     <div className="space-y-6">
       <h1 className="text-3xl font-bold">My Claims</h1>
-      <p className="rounded-xl border border-dashed border-border p-8 text-center text-muted">
-        No claims yet.
-      </p>
+      <ClaimsList claims={claims} />
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { StatusBadge } from "@/components/shared/StatusBadge";
@@ -18,6 +19,17 @@ export function DonationCard({ donation, href }: DonationCardProps) {
           <StatusBadge status={donation.status} />
         </div>
       </CardHeader>
+      {donation.photoUrl && (
+        <div className="relative mx-6 mb-2 aspect-video overflow-hidden rounded-lg">
+          <Image
+            src={donation.photoUrl}
+            alt={donation.title}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 400px"
+          />
+        </div>
+      )}
       <CardContent className="space-y-2 text-sm text-muted">
         <p>{donation.foodType} · {donation.quantity} {donation.unit}</p>
         <p>{donation.pickupAddress}</p>

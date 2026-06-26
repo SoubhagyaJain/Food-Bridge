@@ -9,6 +9,9 @@ export type Donation = {
   quantity: number;
   unit: string;
   pickupAddress: string;
+  pickupLat?: number;
+  pickupLng?: number;
+  photoUrl?: string;
   status: DonationStatus;
   expiresAt: string;
   createdAt: string;

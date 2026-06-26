@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getDonationById } from "@/server/queries/donation.queries";
 import { StatusBadge } from "@/components/shared/StatusBadge";
@@ -22,6 +23,27 @@ export default async function DonorDonationDetailPage({
         <StatusBadge status={donation.status} />
       </div>
       <p className="text-muted">{donation.description ?? "No description provided."}</p>
+
+      {donation.photoUrl && (
+        <div className="relative aspect-video overflow-hidden rounded-xl">
+          <Image
+            src={donation.photoUrl}
+            alt={donation.title}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 768px"
+            priority
+          />
+        </div>
+      )}
+
+      <div className="grid gap-2 text-sm text-muted">
+        <p>
+          {donation.foodType} · {donation.quantity} {donation.unit}
+        </p>
+        <p>Pickup: {donation.pickupAddress}</p>
+      </div>
+
       <Map address={donation.pickupAddress} />
     </div>
   );

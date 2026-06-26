@@ -1,34 +1,60 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { LoginForm } from "@/components/features/auth/LoginForm";
+import { RoleLoginPicker } from "@/components/features/auth/RoleLoginPicker";
+import { isRole, ROLE_LABELS } from "@/lib/auth/roles";
+import type { Role } from "@/lib/constants";
 
-export default function LoginPage() {
+type LoginPageProps = {
+  searchParams: Promise<{
+    redirect?: string;
+    role?: string;
+    error?: string;
+    error_description?: string;
+  }>;
+};
+
+export default async function LoginPage({ searchParams }: LoginPageProps) {
+  const params = await searchParams;
+  const role = isRole(params.role) ? (params.role as Role) : null;
+
+  if (!role) {
+    return (
+      <Card className="w-full max-w-md">
+        <CardHeader>
+          <CardTitle>Sign in</CardTitle>
+          <CardDescription>Select your role to continue</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <RoleLoginPicker />
+        </CardContent>
+      </Card>
+    );
+  }
+
   return (
     <Card className="w-full max-w-md">
       <CardHeader>
         <CardTitle>Welcome back</CardTitle>
-        <CardDescription>Sign in to your foodbridge account</CardDescription>
+        <CardDescription>Sign in as {ROLE_LABELS[role]}</CardDescription>
       </CardHeader>
       <CardContent>
-        <form className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input id="email" name="email" type="email" placeholder="you@example.com" required />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
-            <Input id="password" name="password" type="password" required />
-          </div>
-          <Button type="submit" className="w-full">Sign in</Button>
-        </form>
-        <p className="mt-4 text-center text-sm text-muted">
-          No account?{" "}
-          <Link href="/register" className="font-medium text-brand-sage hover:underline">
-            Register
-          </Link>
-        </p>
+        {params.error === "auth_callback_failed" && (
+          <p className="mb-4 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950/30 dark:text-red-400">
+            Google sign-in could not be completed. Please try again.
+            {params.error_description && (
+              <span className="mt-1 block text-xs opacity-80">
+                {decodeURIComponent(params.error_description)}
+              </span>
+            )}
+          </p>
+        )}
+        {params.error === "role_mismatch" && (
+          <p className="mb-4 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950/30 dark:text-red-400">
+            That account is not registered as {ROLE_LABELS[role]}. Pick the correct role or use
+            another account.
+          </p>
+        )}
+        <LoginForm role={role} redirectTo={params.redirect} />
       </CardContent>
     </Card>
   );
