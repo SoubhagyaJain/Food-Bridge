@@ -7,5 +7,6 @@ export type UserProfile = {
   role: Role;
   phone?: string;
   organizationName?: string;
+  onboardingCompleted: boolean;
   createdAt: string;
 };

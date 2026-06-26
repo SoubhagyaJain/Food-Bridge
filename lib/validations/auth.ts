@@ -13,5 +13,10 @@ export const registerSchema = z.object({
   role: z.enum(ROLES),
 });
 
+export const onboardingSchema = z.object({
+  role: z.enum(ROLES),
+});
+
 export type LoginInput = z.infer<typeof loginSchema>;
 export type RegisterInput = z.infer<typeof registerSchema>;
+export type OnboardingInput = z.infer<typeof onboardingSchema>;

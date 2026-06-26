@@ -3,67 +3,35 @@ import Link from "next/link";
 
 export function Hero() {
   return (
-    <section className="relative z-10 flex h-[620px] items-center justify-center overflow-hidden md:h-[680px]">
+    <section className="relative flex h-[92vh] min-h-[700px] items-center overflow-hidden">
       <Image
         src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2070"
-        alt="Community coming together to help with food donations"
+        alt="Happy children reaching out - foodbridge"
         fill
         priority
-        className="object-cover object-center"
+        className="object-cover"
         sizes="100vw"
       />
-      <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
+      <div className="absolute inset-0 bg-black/45" aria-hidden="true" />
 
-      <div className="relative z-10 max-w-4xl px-6 text-center text-white">
-        <h1 className="text-5xl font-semibold leading-tight tracking-tight md:text-6xl">
-          When We Come Together,
-          <br />
-          <span className="text-[#F4A261]">No One Goes Hungry</span>
-        </h1>
-
-        <p className="mx-auto mt-5 max-w-2xl text-lg text-white/90 md:text-xl">
-          FoodBridge connects people who have extra food with those who need it — through compassion
-          and community.
-        </p>
-
-        <div className="mt-8 flex flex-wrap justify-center gap-4">
-          <Link
-            href="/login"
-            className="rounded-full bg-brand-coral px-8 py-3.5 font-semibold text-white transition-colors hover:bg-brand-coral-hover"
-          >
-            Donate Now
-          </Link>
-          <Link
-            href="/register"
-            className="rounded-full bg-white px-8 py-3.5 font-semibold text-[#3D2B1F] transition-colors hover:bg-gray-100"
-          >
-            Become a Volunteer
-          </Link>
+      <div className="relative z-10 mx-auto w-full max-w-5xl px-6 md:px-12">
+        <div className="max-w-3xl">
+          <h1 className="text-5xl font-bold leading-[1.05] tracking-[-2px] text-white sm:text-6xl md:text-7xl lg:text-[82px]">
+            Help The <span className="text-[#f4c95f]">Children</span> in Need
+          </h1>
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/90 md:text-xl">
+            Bridging the gap to ensure no child goes hungry. Join us in nourishing futures today.
+          </p>
+          <div className="mt-8">
+            <Link
+              href="#programs"
+              className="inline-block rounded-full border-2 border-white px-8 py-3 font-medium text-white transition-all duration-300 hover:bg-white hover:text-black"
+            >
+              View More
+            </Link>
+          </div>
         </div>
-
-        <p className="mt-5 text-sm text-white/80">
-          Join 500+ volunteers making a difference every week
-        </p>
       </div>
-
-      <a
-        href="#how-it-works"
-        className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 text-white/70 md:block"
-        aria-label="Scroll to explore"
-      >
-        <div className="flex flex-col items-center text-sm transition-colors hover:text-white">
-          <span>Scroll to explore</span>
-          <svg
-            className="mt-1 h-5 w-5 animate-bounce"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            aria-hidden="true"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-          </svg>
-        </div>
-      </a>
     </section>
   );
 }

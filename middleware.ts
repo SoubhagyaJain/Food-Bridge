@@ -1,15 +1,11 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { updateSession } from "@/lib/supabase/middleware";
 import type { Role } from "@/lib/constants";
+import { ROLE_ROUTE_PREFIX } from "@/lib/constants";
 
 const AUTH_ROUTES = ["/login", "/register"];
 const PUBLIC_ROUTES = ["/", ...AUTH_ROUTES];
-
-const ROLE_PREFIXES: Record<Role, string> = {
-  donor: "/donor",
-  ngo: "/ngo",
-  volunteer: "/volunteer",
-};
+const ONBOARDING_ROUTE = "/auth/onboarding";
 
 function isPublicRoute(pathname: string) {
   return PUBLIC_ROUTES.some(
@@ -27,13 +23,35 @@ function getRoleFromPath(pathname: string): Role | null {
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  const supabaseResponse = await updateSession(request);
+  const { response: supabaseResponse, user, profile } = await updateSession(request);
+  const userRole = profile?.role ?? null;
+  const needsOnboarding = user && profile && !profile.onboardingCompleted;
 
-  const userRole = request.cookies.get("fb_role")?.value as Role | undefined;
+  if (needsOnboarding && pathname !== ONBOARDING_ROUTE) {
+    const onboardingUrl = request.nextUrl.clone();
+    onboardingUrl.pathname = ONBOARDING_ROUTE;
+    return NextResponse.redirect(onboardingUrl);
+  }
 
-  if (pathname === "/" && userRole) {
+  if (pathname === ONBOARDING_ROUTE) {
+    if (!user) {
+      const loginUrl = request.nextUrl.clone();
+      loginUrl.pathname = "/login";
+      return NextResponse.redirect(loginUrl);
+    }
+    if (profile?.onboardingCompleted) {
+      const dashboardUrl = request.nextUrl.clone();
+      dashboardUrl.pathname = userRole
+        ? `${ROLE_ROUTE_PREFIX[userRole]}/dashboard`
+        : "/";
+      return NextResponse.redirect(dashboardUrl);
+    }
+    return supabaseResponse;
+  }
+
+  if (pathname === "/register" && user && userRole && profile?.onboardingCompleted) {
     const dashboardUrl = request.nextUrl.clone();
-    dashboardUrl.pathname = `${ROLE_PREFIXES[userRole]}/dashboard`;
+    dashboardUrl.pathname = `${ROLE_ROUTE_PREFIX[userRole]}/dashboard`;
     return NextResponse.redirect(dashboardUrl);
   }
 
@@ -46,7 +64,7 @@ export async function middleware(request: NextRequest) {
     return supabaseResponse;
   }
 
-  if (!userRole) {
+  if (!user || !userRole || needsOnboarding) {
     const loginUrl = request.nextUrl.clone();
     loginUrl.pathname = "/login";
     loginUrl.searchParams.set("redirect", pathname);
@@ -55,7 +73,7 @@ export async function middleware(request: NextRequest) {
 
   if (userRole !== requiredRole) {
     const dashboardUrl = request.nextUrl.clone();
-    dashboardUrl.pathname = `${ROLE_PREFIXES[userRole]}/dashboard`;
+    dashboardUrl.pathname = `${ROLE_ROUTE_PREFIX[userRole]}/dashboard`;
     return NextResponse.redirect(dashboardUrl);
   }
 
@@ -64,6 +82,6 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|images|legacy|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    "/((?!_next/static|_next/image|favicon.ico|images|legacy|auth/callback|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
   ],
 };
