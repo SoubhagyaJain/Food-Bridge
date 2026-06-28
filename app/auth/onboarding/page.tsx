@@ -11,6 +11,8 @@ type OnboardingPageProps = {
   searchParams: Promise<{ role?: string }>;
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function OnboardingPage({ searchParams }: OnboardingPageProps) {
   const params = await searchParams;
   const defaultRole = isRole(params.role) ? (params.role as Role) : undefined;

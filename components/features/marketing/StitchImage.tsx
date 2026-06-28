@@ -10,13 +10,22 @@ export function isStitchCdnUrl(src: ImageProps["src"]): boolean {
  * Google Stitch CDN images load directly in the browser.
  * Bypasses /_next/image — avoids dev/prod upstream timeouts on huge =s0 URLs.
  */
-export function StitchImage({ src, unoptimized, quality, priority, loading, ...props }: ImageProps) {
+export function StitchImage({
+  src,
+  alt = "",
+  unoptimized,
+  quality,
+  priority,
+  loading,
+  ...props
+}: ImageProps) {
   const useDirectCdn = unoptimized ?? isStitchCdnUrl(src);
   const resolvedLoading = priority ? "eager" : loading;
 
   return (
     <Image
       src={src}
+      alt={alt}
       unoptimized={useDirectCdn}
       priority={priority}
       loading={resolvedLoading}

@@ -4,6 +4,9 @@ import { VolunteerSidebar } from "@/components/features/volunteer/VolunteerSideb
 import { VolunteerTopBar } from "@/components/features/volunteer/VolunteerTopBar";
 import { getCurrentProfile } from "@/lib/auth/session";
 
+/** Auth-gated routes — skip static prerender (no CI/user session at build time) */
+export const dynamic = "force-dynamic";
+
 export default async function VolunteerLayout({ children }: { children: React.ReactNode }) {
   const profile = await getCurrentProfile();
   if (!profile) redirect("/login");

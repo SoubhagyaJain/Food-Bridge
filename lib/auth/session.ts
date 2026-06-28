@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation";
 import { cache } from "react";
 import { createClient } from "@/lib/supabase/server";
 import type { Role } from "@/lib/constants";
@@ -43,7 +44,7 @@ export const getCurrentProfile = cache(async (): Promise<UserProfile | null> => 
 export async function requireProfile(): Promise<UserProfile> {
   const profile = await getCurrentProfile();
   if (!profile) {
-    throw new Error("Profile not found");
+    redirect("/login");
   }
   return profile;
 }
