@@ -1,6 +1,6 @@
 "use client";
 
-import { useTransition } from "react";
+import { useActionState } from "react";
 import {
   acceptPickupAction,
   completePickupAction,
@@ -15,26 +15,19 @@ type PickupDetailActionsProps = {
   currentUserId: string;
 };
 
+type ActionState = { error?: string } | null;
+
 export function PickupDetailActions({
   pickupId,
   status,
   volunteerId,
   currentUserId,
 }: PickupDetailActionsProps) {
-  const [pending, startTransition] = useTransition();
   const isOwner = volunteerId === currentUserId;
-
-  const run = (action: (id: string) => Promise<{ error?: string; success?: boolean }>) => {
-    startTransition(async () => {
-      await action(pickupId);
-    });
-  };
 
   if (status === "open") {
     return (
-      <Button onClick={() => run(acceptPickupAction)} disabled={pending}>
-        Accept pickup
-      </Button>
+      <PickupActionButton pickupId={pickupId} action={acceptPickupAction} label="Accept pickup" />
     );
   }
 
@@ -42,19 +35,48 @@ export function PickupDetailActions({
 
   if (status === "assigned") {
     return (
-      <Button onClick={() => run(markPickedUpAction)} disabled={pending}>
-        Mark picked up
-      </Button>
+      <PickupActionButton pickupId={pickupId} action={markPickedUpAction} label="Mark picked up" />
     );
   }
 
   if (status === "in_transit") {
     return (
-      <Button onClick={() => run(completePickupAction)} disabled={pending}>
-        Mark delivered
-      </Button>
+      <PickupActionButton pickupId={pickupId} action={completePickupAction} label="Mark delivered" />
     );
   }
 
   return null;
+}
+
+function PickupActionButton({
+  pickupId,
+  action,
+  label,
+}: {
+  pickupId: string;
+  action: (id: string) => Promise<{ error?: string; success?: boolean }>;
+  label: string;
+}) {
+  const [state, formAction, pending] = useActionState(
+    async (_prev: ActionState, _formData: FormData): Promise<ActionState> => {
+      const result = await action(pickupId);
+      return result.error ? { error: result.error } : null;
+    },
+    null
+  );
+
+  return (
+    <div>
+      <form action={formAction}>
+        <Button type="submit" disabled={pending} aria-busy={pending}>
+          {pending ? "Updating…" : label}
+        </Button>
+      </form>
+      {state?.error && (
+        <p role="alert" className="mt-2 text-sm text-error">
+          {state.error}
+        </p>
+      )}
+    </div>
+  );
 }

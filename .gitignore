@@ -7,6 +7,8 @@ node_modules/
 .env.local
 .env*.local
 .cursor/
+.grok/
+.mcp.json
 .next/
 out/
 build/

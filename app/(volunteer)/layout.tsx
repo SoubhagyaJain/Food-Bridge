@@ -1,17 +1,31 @@
+import { redirect } from "next/navigation";
+import { VolunteerPortalImagePreload } from "@/components/features/volunteer/VolunteerPortalImagePreload";
 import { VolunteerSidebar } from "@/components/features/volunteer/VolunteerSidebar";
 import { VolunteerTopBar } from "@/components/features/volunteer/VolunteerTopBar";
-import { requireProfile } from "@/lib/auth/session";
+import { getCurrentProfile } from "@/lib/auth/session";
 
 export default async function VolunteerLayout({ children }: { children: React.ReactNode }) {
-  const profile = await requireProfile();
+  const profile = await getCurrentProfile();
+  if (!profile) redirect("/login");
+
   const userInitial = profile.fullName.charAt(0).toUpperCase();
   const firstName = profile.fullName.split(" ")[0];
 
   return (
-    <div className="min-h-screen bg-[#F9F7F3] font-sans text-foreground dark:bg-background">
+    <div className="min-h-screen bg-background font-sans text-foreground">
+      <a
+        href="#volunteer-main"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-card focus:px-4 focus:py-2 focus:shadow-md"
+      >
+        Skip to main content
+      </a>
+      <VolunteerPortalImagePreload />
       <VolunteerSidebar userInitial={userInitial} />
       <VolunteerTopBar userName={firstName} />
-      <main className="ml-0 pb-24 transition-all duration-300 md:ml-64 md:pb-10">
+      <main
+        id="volunteer-main"
+        className="relative ml-0 bg-transparent pb-24 transition-all duration-300 md:ml-64 md:pb-10"
+      >
         {children}
       </main>
     </div>

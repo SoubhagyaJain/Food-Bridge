@@ -17,6 +17,15 @@ export type VolunteerImpactStats = {
   openNearby: number;
 };
 
+export type VolunteerHistoryMission = {
+  id: string;
+  quantity?: number;
+  unit?: string;
+  deliveredAt?: string;
+  donorName: string;
+  ngoOrganizationName: string;
+};
+
 export async function getNearbyOpenPickups(
   lat: number,
   lng: number,
@@ -100,6 +109,44 @@ async function getPickupsForVolunteerFallback(volunteerId: string): Promise<Pick
       } | null
     )
   );
+}
+
+export async function getVolunteerHistoryMissions(
+  volunteerId: string,
+  limit = 50
+): Promise<VolunteerHistoryMission[]> {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("pickups_with_details")
+    .select("*")
+    .eq("volunteer_id", volunteerId)
+    .eq("pickup_status", "delivered")
+    .order("delivered_at", { ascending: false })
+    .limit(limit);
+
+  if (error) {
+    const fallback = await getVolunteerHistoryFallback(volunteerId, limit);
+    return fallback.map((pickup) => ({
+      id: pickup.id,
+      quantity: pickup.quantity,
+      unit: pickup.unit,
+      deliveredAt: pickup.deliveredAt,
+      donorName: pickup.donorName ?? "Donor",
+      ngoOrganizationName: "Recipient",
+    }));
+  }
+
+  return (data ?? []).map((row) => {
+    const detail = mapPickupDetailRow(row);
+    return {
+      id: detail.id,
+      quantity: detail.quantity,
+      unit: detail.unit,
+      deliveredAt: detail.deliveredAt,
+      donorName: detail.donorName ?? "Donor",
+      ngoOrganizationName: detail.ngo?.organizationName ?? "Recipient",
+    };
+  });
 }
 
 export async function getVolunteerHistory(

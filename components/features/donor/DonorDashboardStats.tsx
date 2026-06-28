@@ -1,5 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { DonorStats } from "@/server/queries/stats.queries";
+import { typeStat, typeStatLabel } from "@/lib/typography";
+import { cn } from "@/lib/utils";
 
 export function DonorDashboardStats({ stats }: { stats: DonorStats }) {
   const items = [
@@ -13,10 +15,10 @@ export function DonorDashboardStats({ stats }: { stats: DonorStats }) {
       {items.map((stat) => (
         <Card key={stat.label}>
           <CardHeader>
-            <CardTitle className="text-sm font-medium text-muted">{stat.label}</CardTitle>
+            <CardTitle className={typeStatLabel}>{stat.label}</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-3xl font-bold">{stat.value}</p>
+            <p className={cn("text-3xl", typeStat)}>{stat.value}</p>
           </CardContent>
         </Card>
       ))}

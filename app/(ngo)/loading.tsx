@@ -1,0 +1,1 @@
+export { NgoRouteLoading as default } from "@/components/shared/route-shells";

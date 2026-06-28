@@ -1,14 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { DeliveryStatusStepper } from "@/components/features/volunteer/DeliveryStatusStepper";
 import { PickupDetailActions } from "@/components/features/volunteer/PickupDetailActions";
 import { PickupStatusBadge } from "@/components/features/volunteer/PickupStatusBadge";
+import { PickupLocationMap } from "@/components/features/volunteer/maps/PickupLocationMap";
+import { VolunteerPageShell } from "@/components/features/volunteer/portal/VolunteerPageShell";
 import { Map } from "@/components/shared/Map";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { formatDate } from "@/lib/utils";
-import { requireProfile } from "@/lib/auth/session";
+import { getCurrentProfile } from "@/lib/auth/session";
 import { getPickupById } from "@/server/queries/pickup.queries";
 
 type PageProps = {
@@ -17,15 +19,16 @@ type PageProps = {
 
 export default async function PickupDetailPage({ params }: PageProps) {
   const { id } = await params;
-  const profile = await requireProfile();
-  const pickup = await getPickupById(id);
+  const profile = await getCurrentProfile();
+  if (!profile) redirect("/login");
 
-  if (!pickup) {
-    notFound();
-  }
+  const pickup = await getPickupById(id);
+  if (!pickup) notFound();
+
+  const hasCoords = pickup.pickupLat != null && pickup.pickupLng != null;
 
   return (
-    <div className="mx-auto max-w-3xl space-y-6 px-4 pb-12 pt-4 md:px-8">
+    <VolunteerPageShell variant="solid" contentClassName="max-w-3xl space-y-6 pt-4">
       <div className="flex items-center gap-4">
         <Button variant="ghost" size="sm" asChild>
           <Link href="/volunteer/pickups">← Back</Link>
@@ -98,7 +101,11 @@ export default async function PickupDetailPage({ params }: PageProps) {
 
       <div>
         <h2 className="mb-3 text-lg font-semibold">Pickup location</h2>
-        <Map address={pickup.pickupAddress} className="min-h-[280px]" />
+        {hasCoords ? (
+          <PickupLocationMap pickup={pickup} className="min-h-[280px]" />
+        ) : (
+          <Map address={pickup.pickupAddress} className="min-h-[280px]" />
+        )}
       </div>
 
       {pickup.status !== "delivered" && pickup.status !== "cancelled" && (
@@ -109,6 +116,6 @@ export default async function PickupDetailPage({ params }: PageProps) {
           currentUserId={profile.id}
         />
       )}
-    </div>
+    </VolunteerPageShell>
   );
 }

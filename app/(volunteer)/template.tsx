@@ -1,0 +1,1 @@
+export { DashboardPageTemplate as default } from "@/components/shared/route-shells";

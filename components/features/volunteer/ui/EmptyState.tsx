@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { ArrowRight, HeartHandshake, MapPin, Package } from "lucide-react";
 
@@ -28,15 +26,15 @@ const THEMES = {
   },
   green: {
     color: "text-brand-sage",
-    bg: "bg-brand-sage/10 dark:bg-brand-sage/20",
+    bg: "bg-green-50 dark:bg-green-950/40",
     btn: "bg-brand-sage hover:bg-brand-sage/90",
   },
   stone: {
     color: "text-muted",
     bg: "bg-accent-hover",
-    btn: "bg-foreground hover:bg-foreground/90",
+    btn: "bg-foreground hover:bg-foreground/90 dark:bg-foreground dark:text-background",
   },
-};
+} as const;
 
 export function EmptyState({
   icon,
@@ -46,28 +44,24 @@ export function EmptyState({
   buttonHref,
   colorTheme = "orange",
 }: EmptyStateProps) {
-  const theme = THEMES[colorTheme];
   const Icon = ICONS[icon];
+  const theme = THEMES[colorTheme];
 
   return (
-    <div className="relative mx-auto mt-8 max-w-2xl overflow-hidden rounded-[2rem] border border-border bg-card p-12 text-center shadow-sm">
-      <div className="relative mb-8 flex justify-center">
-        <div
-          className={`relative z-10 flex h-32 w-32 items-center justify-center rounded-full border border-border shadow-sm ${theme.bg}`}
-        >
-          <Icon size={48} className={theme.color} strokeWidth={1.5} />
-        </div>
+    <div className="flex flex-col items-center rounded-2xl border border-dashed border-border bg-card/90 p-10 text-center backdrop-blur-md sm:p-12">
+      <div
+        className={`mb-6 flex h-20 w-20 items-center justify-center rounded-full ${theme.bg}`}
+      >
+        <Icon size={36} className={theme.color} aria-hidden />
       </div>
-      <h3 className="mb-4 text-2xl font-bold text-foreground">{title}</h3>
-      <p className="mx-auto mb-8 max-w-md text-sm leading-relaxed text-muted md:text-base">
-        {description}
-      </p>
+      <h2 className="mb-2 text-xl font-bold text-foreground">{title}</h2>
+      <p className="mb-8 max-w-md text-sm text-muted sm:text-base">{description}</p>
       {buttonText && buttonHref && (
         <Link
           href={buttonHref}
-          className={`mx-auto inline-flex items-center gap-2 rounded-xl px-8 py-3.5 text-sm font-semibold text-white shadow-sm transition-all hover:-translate-y-0.5 ${theme.btn}`}
+          className={`inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold text-white transition-colors ${theme.btn}`}
         >
-          {buttonText} <ArrowRight size={18} />
+          {buttonText} <ArrowRight size={16} aria-hidden />
         </Link>
       )}
     </div>

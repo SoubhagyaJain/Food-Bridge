@@ -1,64 +1,41 @@
-"use client";
-
 import Link from "next/link";
-import { useTransition } from "react";
-import {
-  CheckCircle,
-  Clock,
-  Coffee,
-  Leaf,
-  MapPin,
-  Navigation,
-  ShoppingBag,
-} from "lucide-react";
-import { completePickupAction, markPickedUpAction } from "@/server/actions/volunteer.actions";
+import { Clock, MapPin, Navigation } from "lucide-react";
+import { TaskStatusButton } from "@/components/features/volunteer/pickups/TaskStatusButton";
+import { PickupFoodIcon } from "@/components/features/volunteer/pickups/PickupFoodIcon";
+import { PortalCard } from "@/components/features/volunteer/portal/PortalCard";
 import { formatDistance } from "@/lib/geo/distance";
 import type { PickupWithDonation } from "@/lib/mappers/donation";
 import {
   formatExpiresIn,
   formatPickupWindow,
   getDonorLabel,
-  getFoodCategory,
   getUrgency,
 } from "@/lib/volunteer/pickup-ui";
+import { cn } from "@/lib/utils";
 
 type TaskCardProps = {
   pickup: PickupWithDonation;
 };
 
-function FoodIcon({ foodType }: { foodType?: string }) {
-  const category = getFoodCategory(foodType);
-  if (category === "bakery") return <Coffee size={20} className="text-brand-coral" />;
-  if (category === "produce") return <Leaf size={20} className="text-green-600 dark:text-green-400" />;
-  return <ShoppingBag size={20} className="text-blue-600 dark:text-blue-400" />;
-}
-
 export function TaskCard({ pickup }: TaskCardProps) {
-  const [pending, startTransition] = useTransition();
   const urgency = getUrgency(pickup.expiresAt);
   const isHighUrgency = urgency === "high";
 
-  const handlePickedUp = () => {
-    startTransition(async () => {
-      await markPickedUpAction(pickup.id);
-    });
-  };
-
-  const handleDelivered = () => {
-    startTransition(async () => {
-      await completePickupAction(pickup.id);
-    });
-  };
-
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:border-brand-coral/50 hover:shadow-md">
-      {isHighUrgency && <div className="absolute left-0 top-0 h-1 w-full bg-red-500" />}
+    <PortalCard
+      variant="solid"
+      className="relative overflow-hidden p-6 transition-all hover:border-brand-coral/50 hover:shadow-md"
+    >
+      {isHighUrgency && <div className="absolute left-0 top-0 h-1 w-full bg-red-500" aria-hidden />}
 
       <div className="flex flex-col items-start gap-6 md:flex-row md:items-center">
         <div
-          className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-border ${isHighUrgency ? "bg-orange-50 dark:bg-orange-950/40" : "bg-card-muted"}`}
+          className={cn(
+            "flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-border",
+            isHighUrgency ? "bg-orange-50 dark:bg-orange-950/40" : "bg-card-muted"
+          )}
         >
-          <FoodIcon foodType={pickup.foodType} />
+          <PickupFoodIcon foodType={pickup.foodType} />
         </div>
 
         <div className="w-full flex-1">
@@ -66,7 +43,7 @@ export function TaskCard({ pickup }: TaskCardProps) {
             <h4 className="text-lg font-bold text-foreground">{pickup.title}</h4>
             {isHighUrgency && (
               <span className="flex items-center gap-1 rounded-full bg-red-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-red-600 dark:bg-red-950/50 dark:text-red-400">
-                <Clock size={12} /> Expires in {formatExpiresIn(pickup.expiresAt)}
+                <Clock size={12} aria-hidden /> Expires in {formatExpiresIn(pickup.expiresAt)}
               </span>
             )}
           </div>
@@ -74,39 +51,26 @@ export function TaskCard({ pickup }: TaskCardProps) {
           <div className="flex flex-wrap items-center gap-3 text-xs font-medium text-muted">
             {pickup.distanceMeters != null && (
               <span className="flex items-center gap-1.5 rounded-lg border border-border bg-accent-hover px-3 py-1.5">
-                <Navigation size={14} className="text-blue-500" />{" "}
+                <Navigation size={14} className="text-blue-500" aria-hidden />{" "}
                 {formatDistance(pickup.distanceMeters)}
               </span>
             )}
             <span className="flex items-center gap-1.5 rounded-lg border border-border bg-accent-hover px-3 py-1.5">
-              <Clock size={14} className="text-orange-500" /> {formatPickupWindow(pickup.expiresAt)}
+              <Clock size={14} className="text-orange-500" aria-hidden />{" "}
+              {formatPickupWindow(pickup.expiresAt)}
             </span>
             <span className="flex max-w-[200px] items-center gap-1.5 truncate rounded-lg border border-border bg-accent-hover px-3 py-1.5">
-              <MapPin size={14} className="text-muted-soft" /> {pickup.pickupAddress}
+              <MapPin size={14} className="text-muted-soft" aria-hidden /> {pickup.pickupAddress}
             </span>
           </div>
         </div>
 
         <div className="mt-4 flex w-full flex-col gap-2 md:mt-0 md:w-auto">
           {pickup.status === "assigned" && (
-            <button
-              type="button"
-              onClick={handlePickedUp}
-              disabled={pending}
-              className="flex w-full items-center justify-center gap-2 rounded-xl bg-brand-sage px-6 py-3 text-sm font-bold text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-brand-sage/90 hover:shadow-md disabled:opacity-60"
-            >
-              <CheckCircle size={18} /> Mark Picked Up
-            </button>
+            <TaskStatusButton pickupId={pickup.id} status="assigned" />
           )}
           {pickup.status === "in_transit" && (
-            <button
-              type="button"
-              onClick={handleDelivered}
-              disabled={pending}
-              className="flex w-full items-center justify-center gap-2 rounded-xl bg-brand-sage px-6 py-3 text-sm font-bold text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-brand-sage/90 hover:shadow-md disabled:opacity-60"
-            >
-              <CheckCircle size={18} /> Mark Delivered
-            </button>
+            <TaskStatusButton pickupId={pickup.id} status="in_transit" />
           )}
           <Link
             href={`/volunteer/pickups/${pickup.id}`}
@@ -116,6 +80,6 @@ export function TaskCard({ pickup }: TaskCardProps) {
           </Link>
         </div>
       </div>
-    </div>
+    </PortalCard>
   );
 }

@@ -1,0 +1,1 @@
+export { SubtlePageTemplate as default } from "@/components/shared/route-shells";

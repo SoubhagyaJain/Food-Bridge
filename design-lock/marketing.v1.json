@@ -1,0 +1,49 @@
+{
+  "version": "marketing-v1",
+  "lockedAt": "2026-06-28",
+  "description": "Frozen FoodBridge marketing landing design. Run `npm run design:lock` only after intentional visual changes, then commit this file.",
+  "files": {
+    "lib/marketing/typography.ts": "208a1f32251750baf2be63f365cd4225d32f8293bcf191ba70f62edcc10cb7f5",
+    "lib/marketing/scroll-backgrounds.ts": "e0f6b5b824979b1c8b54846d41dddf92b55d24c37777ca79bf66266be8429248",
+    "lib/marketing/scroll-background-motion.ts": "1aff6f1705e71e925be57816642a2270566b6d88ab4747cab90d88c445a45853",
+    "lib/marketing/design-lock.ts": "b159fef2d67c168617a9493ecf1ac87723ecb7282390a2358d6e6b653d08c1c8",
+    "components/features/marketing/HeroSection.tsx": "b0c279206ae4b5fb442f506ad0a08b3731d60e2299acc73347c696214cf7b580",
+    "components/features/marketing/HowItWorksSection.tsx": "56ddc5dba1377e779a5cbe81a8ce42913a801dc54772bc80f046b09dc2818fd8",
+    "components/features/marketing/ImpactStatsSection.tsx": "df35e6416a7ab12ea9c97e03425c7b6e1af48f444aace69dcba332d76103405b",
+    "components/features/marketing/RoleCardsSection.tsx": "a2a4eec032c2daa68604e4708894efc8b7c1f98a1106702d93e0701943a57101",
+    "components/features/marketing/CtaBannerSection.tsx": "d3b46e906edcf96a11c3952c3b93d571673cdda0ef5a609830ecccbf54ed59fc",
+    "components/features/marketing/ScrollBackground.tsx": "d4fd306d900411c92ef5877d2cc096a6492f58f595984e2af126c815e69afb86",
+    "components/features/marketing/ScrollBackgroundProvider.tsx": "d921f0ba5fc33066a35409b5ff2f4edf72a339101edd5b3fc66e07eb273a9ff5",
+    "components/features/marketing/MarketingPageShell.tsx": "861fd1444be4d3a0de1809b0e0e133793ab4ed72f073d81dfd758113881e8a10",
+    "app/globals.css": "35472102abaca9ae3fe4ede6c4656ff66cfa31795bd7cb0bc8571a67faf43cbe",
+    "tailwind.config.ts": "3d43c9ad7fae1575287575d8f86f3bd099e1d957c8199fd8f794ef6727132911"
+  },
+  "contracts": {
+    "lockVersion": "marketing-v1",
+    "sectionOrder": [
+      "impact",
+      "how-it-works",
+      "community",
+      "stories",
+      "cta"
+    ],
+    "heroSectionId": "home",
+    "heroHeadline": "Turn Surplus Food\nInto Real Impact",
+    "howItWorksHeadline": "Four Simple Steps.\nOne Shared Mission.",
+    "ctaGetStartedUsesHeroCtaClass": "hero-cta-primary",
+    "roleCardForbiddenPatterns": [
+      "hover:bg-white/90",
+      "hover:border-primary/45",
+      "dark:hover:bg-[#4a382f]",
+      "dark:hover:border-[#8b6f63]"
+    ],
+    "howItWorksHeaderMustInclude": [
+      "!text-white",
+      "text-shadow-dark"
+    ],
+    "heroCtaMustInclude": [
+      "hover:bg-white",
+      "active:bg-white"
+    ]
+  }
+}

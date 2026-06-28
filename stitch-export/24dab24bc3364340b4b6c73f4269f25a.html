@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sign In - FoodBridge</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#f8ebea",
+                        "on-secondary-fixed-variant": "#484743",
+                        "surface-container-highest": "#ede0df",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#4a0e0e",
+                        "inverse-surface": "#362f2f",
+                        "on-tertiary-fixed": "#29180a",
+                        "inverse-on-surface": "#fbeeed",
+                        "on-tertiary-container": "#a28672",
+                        "secondary-container": "#e6e2dc",
+                        "tertiary-fixed": "#fedcc5",
+                        "primary": "#2a0002",
+                        "surface-dim": "#e4d7d7",
+                        "on-tertiary-fixed-variant": "#594231",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#77302d",
+                        "primary-fixed": "#ffdad7",
+                        "secondary-fixed": "#e6e2dc",
+                        "surface-tint": "#954742",
+                        "outline": "#877270",
+                        "on-surface-variant": "#544341",
+                        "on-background": "#201a1a",
+                        "surface-container-low": "#fef1f0",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#1a0b02",
+                        "on-error": "#ffffff",
+                        "on-secondary-container": "#666460",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#ede0df",
+                        "primary-fixed-dim": "#ffb3ad",
+                        "surface-container-lowest": "#ffffff",
+                        "outline-variant": "#dac1bf",
+                        "secondary-fixed-dim": "#c9c6c1",
+                        "on-secondary-fixed": "#1c1c18",
+                        "surface": "#fff8f7",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#e1c0aa",
+                        "on-primary-fixed": "#3d0506",
+                        "on-surface": "#201a1a",
+                        "on-primary-container": "#cc726d",
+                        "inverse-primary": "#ffb3ad",
+                        "on-tertiary": "#ffffff",
+                        "background": "#fff8f7",
+                        "tertiary-container": "#332012",
+                        "surface-container-high": "#f2e5e5",
+                        "surface-bright": "#fff8f7",
+                        "secondary": "#605e5a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "section-gap": "120px",
+                        "margin-desktop": "64px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Montserrat"],
+                        "body-lg": ["Montserrat"],
+                        "display-lg-mobile": ["Montserrat"],
+                        "display-lg": ["Montserrat"],
+                        "label-lg": ["Montserrat"],
+                        "body-md": ["Montserrat"],
+                        "headline-lg": ["Montserrat"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["28px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400" }],
+                        "display-lg-mobile": ["36px", { "lineHeight": "1.1", "fontWeight": "800" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "label-lg": ["14px", { "lineHeight": "1.2", "letterSpacing": "0.08em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 248, 247, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(135, 114, 112, 0.2);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            background: rgba(255, 248, 247, 0.95);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(74, 14, 14, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-background min-h-screen flex flex-col font-body-md text-on-surface">
+<!-- TopNavBar Suppressed as per instructions for Login/Sign-in -->
+<main class="flex-grow relative flex items-center justify-center min-h-screen"><button aria-label="Toggle theme" class="absolute top-8 right-8 z-20 p-3 rounded-full glass-card text-on-primary hover:scale-110 transition-transform flex items-center justify-center"><span class="material-symbols-outlined">light_mode</span></button>
+<!-- Background Image -->
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center" data-alt="Cinematic, warm photograph of a modern community dining room. High contrast, golden hour lighting pouring through large windows, illuminating a diverse group of people sharing a meal. Editorial style, dignified, empathetic, with deep charcoal shadows and warm terracotta highlights." style="background-image: url('https://lh3.googleusercontent.com/aida/AP1WRLshMcREGuxa2Xx-uVRAhWe24sEWCMDpvjIGIwhcr0x33i67LODlpJt8N9ZIOqXKoH7otoce5S2aoYiDkGZgfLGZgqfIPG17y6XL1Dg6HPI5Nbfuk5zfQJO1wFmGz88fFu_q4F1_dm954ttcNCIFzKQdjD_2eYC74NdTAcfHOJf1OJ4ImnABbUjxZGJCXyocvTH_vZbwkhbqZCun8pNSBZTJZv4N1Qlp2ElZmtgTdJSFClQmse2vL1Ems73J')"></div>
+<!-- Overlay -->
+<div class="absolute inset-0 bg-primary/40 mix-blend-multiply"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
+</div>
+<!-- Sign In Content -->
+<div class="relative z-10 w-full max-w-5xl px-margin-mobile md:px-margin-desktop py-20">
+<div class="text-center mb-12">
+<h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-primary mb-4 text-shadow-sm">Sign in</h1>
+<p class="font-body-lg text-body-lg text-surface-variant max-w-2xl mx-auto">Select your role to continue. Choose how you want to sign in.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-gutter">
+<!-- Donor Card -->
+<a class="glass-card rounded-lg p-8 flex flex-col items-center text-center group" href="#">
+<div class="w-16 h-16 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">storefront</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-primary mb-3">Donor</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Post surplus food for pickup.</p>
+</a>
+<!-- NGO Card -->
+<a class="glass-card rounded-lg p-8 flex flex-col items-center text-center group" href="#">
+<div class="w-16 h-16 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">diversity_3</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-primary mb-3">NGO</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Browse and claim donations for your organization.</p>
+</a>
+<!-- Volunteer Card -->
+<a class="glass-card rounded-lg p-8 flex flex-col items-center text-center group" href="#">
+<div class="w-16 h-16 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl">local_shipping</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-primary mb-3">Volunteer</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Accept and deliver food pickups.</p>
+</a>
+</div>
+</div>
+</main>
+<!-- Footer Suppressed on Transactional Screens -->
+</body></html>

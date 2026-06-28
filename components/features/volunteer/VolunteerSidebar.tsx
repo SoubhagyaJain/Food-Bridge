@@ -35,16 +35,21 @@ function NavLinks({ userInitial, onNavigate }: { userInitial: string; onNavigate
               key={item.href}
               href={item.href}
               onClick={onNavigate}
+              aria-current={isActive ? "page" : undefined}
               className={cn(
-                "flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-colors",
+                "volunteer-nav-link flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition-colors",
                 isActive
-                  ? "bg-[#EAF1EB] text-[#2C5E3B] dark:bg-brand-sage/20 dark:text-brand-sage"
-                  : "text-muted hover:bg-accent-hover hover:text-foreground"
+                  ? "is-active bg-[#EAF1EB] text-[#2C5E3B] dark:bg-brand-sage/25 dark:text-[#8fd4a8]"
+                  : "text-[#544341] hover:bg-accent-hover hover:text-[#201a1a] dark:text-[#e8e0d8] dark:hover:bg-accent-hover dark:hover:text-[#f5f0e8]"
               )}
             >
               <Icon
                 size={18}
-                className={isActive ? "text-[#2C5E3B] dark:text-brand-sage" : "text-muted-soft"}
+                className={
+                  isActive
+                    ? "text-[#2C5E3B] dark:text-[#8fd4a8]"
+                    : "text-[#877270] dark:text-[#c9bfb3]"
+                }
               />
               {item.label}
             </Link>
@@ -88,22 +93,26 @@ export function VolunteerSidebar({ userInitial }: VolunteerSidebarProps) {
       )}
 
       <aside
+        aria-label="Volunteer navigation"
         className={cn(
-          "fixed left-0 top-0 z-50 flex h-screen w-64 flex-col border-r border-border bg-card transition-transform md:translate-x-0",
+          "volunteer-nav fixed left-0 top-0 z-50 flex h-screen w-64 flex-col border-r border-border bg-card transition-transform md:translate-x-0",
           mobileOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
         )}
       >
         <div className="flex items-center gap-2 p-6">
-          <Link href="/volunteer/dashboard" className="text-2xl font-bold tracking-tight text-brand-coral">
+          <Link
+            href="/volunteer/dashboard"
+            className="volunteer-nav-logo text-2xl font-bold tracking-tight text-brand-coral"
+          >
             foodbridge
           </Link>
         </div>
         <div className="flex items-center justify-between border-b border-border px-4 py-3 md:hidden">
-          <span className="text-sm font-semibold">Menu</span>
+          <span className="text-sm font-semibold text-[#201a1a] dark:text-[#f5f0e8]">Menu</span>
           <button
             type="button"
             onClick={() => setMobileOpen(false)}
-            className="rounded-lg px-2 py-1 text-muted hover:bg-accent-hover"
+            className="rounded-lg px-2 py-1 text-[#544341] hover:bg-accent-hover hover:text-[#201a1a] dark:text-[#e8e0d8] dark:hover:text-[#f5f0e8]"
             aria-label="Close menu"
           >
             ✕

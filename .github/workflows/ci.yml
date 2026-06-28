@@ -38,6 +38,18 @@ jobs:
       - run: npm ci
       - run: npm run typecheck
 
+  design-lock:
+    name: Marketing design lock
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm run design:verify
+
   build:
     name: Production build
     runs-on: ubuntu-latest
@@ -58,13 +70,14 @@ jobs:
   ci-success:
     name: CI passed
     runs-on: ubuntu-latest
-    needs: [lint, typecheck, build]
+    needs: [lint, typecheck, design-lock, build]
     if: always()
     steps:
       - name: Verify all jobs succeeded
         run: |
           if [ "${{ needs.lint.result }}" != "success" ] || \
              [ "${{ needs.typecheck.result }}" != "success" ] || \
+             [ "${{ needs.design-lock.result }}" != "success" ] || \
              [ "${{ needs.build.result }}" != "success" ]; then
             echo "One or more CI jobs failed."
             exit 1

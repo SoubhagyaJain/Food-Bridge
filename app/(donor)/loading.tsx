@@ -1,0 +1,1 @@
+export { DonorRouteLoading as default } from "@/components/shared/route-shells";

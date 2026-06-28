@@ -10,6 +10,8 @@ import {
   Star,
   Sun,
 } from "lucide-react";
+import { VolunteerPageHeader } from "@/components/features/volunteer/portal/VolunteerPageHeader";
+import { VolunteerPageShell } from "@/components/features/volunteer/portal/VolunteerPageShell";
 import { updateVolunteerProfileAction } from "@/server/actions/volunteer.actions";
 import type { VolunteerProfile } from "@/server/queries/volunteer.queries";
 import type { VolunteerImpactStats } from "@/server/queries/pickup.queries";
@@ -50,11 +52,11 @@ export function VolunteerProfileView({ fullName, profile, stats }: VolunteerProf
   };
 
   return (
-    <div className="mx-auto max-w-6xl px-4 pb-12 pt-4 md:px-8">
-      <div className="mb-8">
-        <h1 className="mb-2 text-3xl font-bold tracking-tight text-foreground">Profile</h1>
-        <p className="font-medium text-muted">Manage your account and availability settings.</p>
-      </div>
+    <VolunteerPageShell variant="solid">
+      <VolunteerPageHeader
+        title="Profile"
+        description="Manage your account and availability settings."
+      />
 
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
         <div className="space-y-6 lg:col-span-1">
@@ -215,6 +217,6 @@ export function VolunteerProfileView({ fullName, profile, stats }: VolunteerProf
           </div>
         </div>
       </div>
-    </div>
+    </VolunteerPageShell>
   );
 }

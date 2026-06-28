@@ -1,0 +1,403 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Foodbridge - Stories of Connection</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-background": "#1c1b1b",
+                "on-surface-variant": "#40493d",
+                "secondary-fixed-dim": "#c8c7bf",
+                "secondary-container": "#e4e3db",
+                "error": "#ba1a1a",
+                "primary": "#0d631b",
+                "tertiary-container": "#b14b6f",
+                "on-primary-fixed": "#002204",
+                "on-primary-container": "#cbffc2",
+                "background": "#fcf9f8",
+                "secondary": "#5f5f59",
+                "inverse-surface": "#313030",
+                "surface-cream": "#FFFDF5",
+                "surface-tint": "#1b6d24",
+                "surface-container": "#f0eded",
+                "charcoal-text": "#1A1A1A",
+                "on-tertiary-fixed-variant": "#7f2448",
+                "primary-container": "#2e7d32",
+                "on-tertiary-container": "#ffedf0",
+                "muted-sage": "#E8F5E9",
+                "tertiary": "#923357",
+                "primary-fixed": "#a3f69c",
+                "on-secondary-fixed-variant": "#474742",
+                "surface-container-high": "#eae7e7",
+                "outline": "#707a6c",
+                "inverse-on-surface": "#f3f0ef",
+                "primary-fixed-dim": "#88d982",
+                "outline-variant": "#bfcaba",
+                "surface-container-low": "#f6f3f2",
+                "tertiary-fixed-dim": "#ffb1c7",
+                "surface-bright": "#fcf9f8",
+                "surface-container-lowest": "#ffffff",
+                "surface-container-highest": "#e5e2e1",
+                "on-tertiary": "#ffffff",
+                "on-surface": "#1c1b1b",
+                "error-container": "#ffdad6",
+                "tertiary-fixed": "#ffd9e2",
+                "inverse-primary": "#88d982",
+                "surface": "#fcf9f8",
+                "surface-variant": "#e5e2e1",
+                "on-secondary-fixed": "#1b1c17",
+                "secondary-fixed": "#e4e3db",
+                "surface-dim": "#dcd9d9",
+                "on-secondary": "#ffffff",
+                "on-tertiary-fixed": "#3f001c",
+                "on-error-container": "#93000a",
+                "on-primary": "#ffffff",
+                "on-error": "#ffffff",
+                "on-secondary-container": "#65655f",
+                "organic-green": "#2E7D32",
+                "on-primary-fixed-variant": "#005312"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "stack-sm": "12px",
+                "stack-md": "24px",
+                "margin-mobile": "20px",
+                "section-gap": "80px",
+                "gutter": "24px",
+                "margin-desktop": "64px",
+                "base": "8px"
+        },
+        "fontFamily": {
+                "display-lg-mobile": [
+                        "Montserrat"
+                ],
+                "label-sm": [
+                        "Montserrat"
+                ],
+                "display-lg": [
+                        "Montserrat"
+                ],
+                "headline-md": [
+                        "Montserrat"
+                ],
+                "label-md": [
+                        "Montserrat"
+                ],
+                "body-md": [
+                        "Montserrat"
+                ],
+                "title-lg": [
+                        "Montserrat"
+                ],
+                "body-lg": [
+                        "Montserrat"
+                ],
+                "headline-md-mobile": [
+                        "Montserrat"
+                ]
+        },
+        "fontSize": {
+                "display-lg-mobile": [
+                        "36px",
+                        {
+                                "lineHeight": "44px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "label-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "fontWeight": "500"
+                        }
+                ],
+                "display-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "56px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-md": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-md": [
+                        "14px",
+                        {
+                                "lineHeight": "20px",
+                                "letterSpacing": "0.01em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "title-lg": [
+                        "20px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-md-mobile": [
+                        "24px",
+                        {
+                                "lineHeight": "32px",
+                                "fontWeight": "600"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .warm-shadow {
+            box-shadow: 0 10px 30px -5px rgba(146, 51, 87, 0.08), 0 4px 10px -3px rgba(146, 51, 87, 0.04);
+        }
+        .fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .mandala-divider {
+            height: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M20 0c11.046 0 20 8.954 20 20s-8.954 20-20 20S0 31.046 0 20 8.954 0 20 0zm0 38c9.941 0 18-8.059 18-18S29.941 2 20 2 2 10.059 2 20s8.059 18 18 18zm0-4c7.732 0 14-6.268 14-14S27.732 6 20 6 6 12.268 6 20s6.268 14 14 14zm0-4c5.523 0 10-4.477 10-10S25.523 10 20 10 10 14.477 10 20s4.477 10 10 10zm0-4c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6z' fill='%23923357' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            background-repeat: repeat-x;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="bg-background dark:bg-inverse-surface text-on-surface dark:text-inverse-on-surface antialiased transition-colors duration-300">
+<!-- TopNavBar -->
+<nav class="bg-background/95 dark:bg-inverse-surface/95 backdrop-blur-md border-b border-outline-variant/30 flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 z-50 sticky top-0 transition-colors duration-300">
+<div class="max-w-[1280px] mx-auto flex justify-between items-center w-full">
+<a class="font-display-lg text-display-lg-mobile md:text-display-lg text-tertiary dark:text-tertiary-fixed tracking-tight" href="#">Foodbridge</a>
+<div class="hidden lg:flex gap-8 items-center">
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-inverse-on-surface hover:text-tertiary dark:hover:text-tertiary-fixed transition-colors duration-200" href="#">Home</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-inverse-on-surface hover:text-tertiary dark:hover:text-tertiary-fixed transition-colors duration-200" href="#">How It Works</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-inverse-on-surface hover:text-tertiary dark:hover:text-tertiary-fixed transition-colors duration-200" href="#">Impact</a>
+<a class="font-label-md text-label-md text-primary dark:text-primary-fixed font-bold border-b-2 border-tertiary dark:border-tertiary-fixed pb-1" href="#">Blog</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-inverse-on-surface hover:text-tertiary dark:hover:text-tertiary-fixed transition-colors duration-200" href="#">Browse Pickups</a>
+</div>
+<div class="hidden lg:flex items-center gap-6">
+<a class="inline-flex bg-primary text-on-primary font-label-md text-label-md px-6 py-2.5 rounded-full hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-sm" href="#">
+            List Surplus Food
+        </a>
+<button aria-label="Notifications" class="text-on-surface-variant dark:text-inverse-on-surface hover:text-tertiary transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]" data-icon="notifications">notifications</span>
+</button>
+<div class="relative group cursor-pointer flex items-center gap-2">
+<img alt="Soubhagya" class="w-8 h-8 rounded-full border border-outline-variant/30 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQa_FloEat-32tuV2HCj-3oDjKl3Byf1j6kLC54vr0EP4g5OzCV4Q6K4K19cBTSEdf3FZANwrUdnSkW-VCV-SaT9QHsyKQ6fLb-SCxCmU1PcdPsqA7soEfbz4c_aPIV9TJqkzYdj2qYVNUTCaJWzZGYDL-00bNz3KUt8BwM5kqjGpDJmZmzjxgRESjw3EtHVt1lM7Ti2YhqvILm7ZcII891Pnj1kZHL6MWv1vhEe5_d-FX50vbY80dNSWwgUIvAFWzTsbUyympIzz2">
+<span class="hidden xl:inline-block font-label-md text-label-md text-on-surface-variant dark:text-inverse-on-surface group-hover:text-tertiary transition-colors">Soubhagya - Volunteer</span>
+<span class="material-symbols-outlined text-on-surface-variant dark:text-inverse-on-surface text-[20px]" data-icon="expand_more">expand_more</span>
+</div>
+<button aria-label="Toggle Theme" class="text-on-surface-variant dark:text-inverse-on-surface hover:text-tertiary transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]" data-icon="light_mode">light_mode</span>
+</button>
+</div>
+<button class="lg:hidden text-primary dark:text-primary-fixed">
+<span class="material-symbols-outlined text-3xl" data-icon="menu">menu</span>
+</button>
+</div>
+</nav>
+<main class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop py-section-gap">
+<!-- Hero Section (Featured Story) -->
+<section class="mb-section-gap fade-in-up">
+<article class="bg-surface-container-lowest dark:bg-inverse-surface/80 rounded-xl overflow-hidden warm-shadow border border-outline-variant/30 flex flex-col md:flex-row group">
+<div class="md:w-3/5 relative h-64 md:h-[500px] overflow-hidden">
+<img alt="Community sharing meal" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMAi8-9qYFgsKNXZFfQwuruHzbV8OqhJxgbglMgtF3PQ_dhz8D_evBjxSu3VxspHnw90CLvQ7_YYDgZPrZMcuI6lCLRrBR09VsQPo7F0zA9FDnkjiAR5ze-zAwY_YMDkFyQ7P00pTlgl7nBWzvRGoagCg480oyqHrKBtZ-Z_Lz5y-nx0qqPFmsfhTIuIHWvPt5e_70m-gmVyyHsv7tyEc8jckatq-deP98YPgHluMQWRX_jI-u-nqiXrK64TcAJM5zQin_u7RusLM0UIc">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute bottom-6 left-6 text-white">
+<span class="inline-block px-3 py-1 bg-tertiary/90 backdrop-blur text-white rounded-lg font-label-sm text-label-sm mb-3">Featured Story</span>
+</div>
+</div>
+<div class="md:w-2/5 p-8 md:p-12 flex flex-col justify-center bg-surface-container-lowest dark:bg-transparent">
+<h2 class="font-display-lg text-display-lg-mobile md:text-[40px] leading-tight text-primary dark:text-primary-fixed mb-6">Diwali ki Mithaiyan Jo Meena ke Ghar Tak Pahunchi</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant dark:text-inverse-on-surface mb-8 line-clamp-4">The lights were still glowing outside when Meenakshi stood in her kitchen staring at three big trays of leftover mithai. How surplus from one family's celebration in Bhopal reached children in a nearby mohalla, bringing the true light of Diwali to those who needed it most.</p>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full border-2 border-tertiary/30 overflow-hidden">
+<img alt="Meenakshi" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQa_FloEat-32tuV2HCj-3oDjKl3Byf1j6kLC54vr0EP4g5OzCV4Q6K4K19cBTSEdf3FZANwrUdnSkW-VCV-SaT9QHsyKQ6fLb-SCxCmU1PcdPsqA7soEfbz4c_aPIV9TJqkzYdj2qYVNUTCaJWzZGYDL-00bNz3KUt8BwM5kqjGpDJmZmzjxgRESjw3EtHVt1lM7Ti2YhqvILm7ZcII891Pnj1kZHL6MWv1vhEe5_d-FX50vbY80dNSWwgUIvAFWzTsbUyympIzz2">
+</div>
+<div>
+<p class="font-label-md text-label-md text-primary dark:text-primary-fixed">Meenakshi S.</p>
+<p class="font-label-sm text-label-sm text-secondary dark:text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="energy_savings_leaf">energy_savings_leaf</span> 6 min read
+                                    </p>
+</div>
+</div>
+<button class="w-12 h-12 bg-tertiary-container rounded-full flex items-center justify-center text-on-tertiary-container hover:bg-tertiary hover:text-on-tertiary transition-colors">
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</article>
+</section>
+<div class="mandala-divider mb-12 fade-in-up delay-100 dark:opacity-50"></div>
+<!-- Search & Filter Bar -->
+<div class="sticky top-[73px] z-40 bg-background/95 dark:bg-inverse-surface/95 backdrop-blur-md py-4 border-b border-outline-variant/30 mb-12 fade-in-up delay-100">
+<div class="flex flex-col md:flex-row gap-4 justify-between items-center">
+<div class="relative w-full md:w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-3 rounded-lg border border-outline-variant bg-surface-container-lowest dark:bg-surface-inverse dark:text-inverse-on-surface focus:border-tertiary focus:ring-1 focus:ring-tertiary outline-none transition-all font-body-md text-body-md warm-shadow" placeholder="Search stories..." type="text">
+</div>
+<div class="flex overflow-x-auto pb-2 md:pb-0 w-full md:w-auto gap-3 hide-scrollbar">
+<button class="whitespace-nowrap px-5 py-2.5 rounded-lg font-label-md text-label-md bg-primary text-on-primary warm-shadow hover:bg-primary-container hover:text-on-primary-container transition-colors">All Stories</button>
+<button class="whitespace-nowrap px-5 py-2.5 rounded-lg font-label-md text-label-md bg-surface-container-lowest dark:bg-surface-inverse border border-outline-variant text-primary dark:text-primary-fixed hover:border-tertiary transition-colors">Impact Stories</button>
+<button class="whitespace-nowrap px-5 py-2.5 rounded-lg font-label-md text-label-md bg-surface-container-lowest dark:bg-surface-inverse border border-outline-variant text-primary dark:text-primary-fixed hover:border-tertiary transition-colors">Practical Guides</button>
+<button class="whitespace-nowrap px-5 py-2.5 rounded-lg font-label-md text-label-md bg-surface-container-lowest dark:bg-surface-inverse border border-outline-variant text-primary dark:text-primary-fixed hover:border-tertiary transition-colors">Volunteer Voices</button>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Main Content Area -->
+<div class="lg:col-span-8 space-y-section-gap">
+<!-- Latest Stories Grid -->
+<div>
+<h3 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed mb-8 flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary" data-icon="local_florist">local_florist</span>
+                        Latest Stories
+                    </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Blog Card 1 -->
+<a class="group block bg-surface-container-lowest dark:bg-inverse-surface/80 rounded-xl overflow-hidden warm-shadow border border-outline-variant/30 hover:-translate-y-1 transition-all duration-300 fade-in-up delay-200" href="#"><div class="relative h-56 overflow-hidden"><img alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_4jrILOannGhjEDNiKzhmrrS3-mzTHfd8wgo-H2-M74qqg5ojh7GJstq8Do2ZYAXmokCEs3vBDy49E8a_fPXg1rb32o_AqKGpdxnbZyjHP7b3ypG-cVzMsgFjm--JNSBRwqi6pY8Bf4f_O7DeRJe04mcgO6ztQswnjGLPQSZP3pSZkD6ul0xKB-qRfPtu-ZhAOpoSWDdcm4iyYNshkoRP-t7peUCx-miJ4k6zYJNzV3R3PtLAyDOl99jgavp2YMXuhM-avEKE_w843EQ"><div class="absolute top-4 left-4 bg-surface-container-lowest/95 dark:bg-inverse-surface/95 backdrop-blur px-3 py-1.5 rounded-lg font-label-sm text-label-sm text-primary dark:text-primary-fixed flex items-center gap-1"><span class="material-symbols-outlined text-[14px]" data-icon="energy_savings_leaf">energy_savings_leaf</span> Impact Stories</div></div><div class="p-6"><h4 class="font-title-lg text-title-lg text-on-surface dark:text-inverse-on-surface mb-3 line-clamp-2 group-hover:text-tertiary transition-colors">Ek Shaadi ke Baad Ka Khana: Feeding 80 Families</h4><p class="font-body-md text-body-md text-on-surface-variant dark:text-outline mb-6 line-clamp-2">A 'Big Fat Indian Wedding' in Indore had surplus that usually goes to waste. See how Foodbridge redirected it to those in need.</p><div class="flex items-center gap-3 pt-4 border-t border-outline-variant/20"><img alt="" class="w-8 h-8 rounded-full border border-tertiary/20 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsjw8Wv2JV73EvAKUom3ZnJUh6d2nx47mhGwUPCHKWh7yS7tBL7UPLQ163ZIadccENipiTOThuMi3pEoLr3PV0B3WltlbdEbj6HBVZwCpdPnU8akDNXWFHBZC1vXBiXUusQAQ3OGPtjcIfAl8_MORt2gtw0m7QrYGsxoT6OO6hubylC10HVty_-nMj_cZUrA1vqFZkw6sOT1ewnZLtdxha_HUj6Vvz0EnVk4OxKjUEzdtBndEezmmTdTbOFOMxNuKltgu1iHWipNh3"><span class="font-label-sm text-label-sm text-secondary dark:text-outline">Indore Team • 5 min read</span></div></div></a>
+<!-- Blog Card 2 -->
+<a class="group block bg-surface-container-lowest dark:bg-inverse-surface/80 rounded-xl overflow-hidden warm-shadow border border-outline-variant/30 hover:-translate-y-1 transition-all duration-300 fade-in-up delay-200" href="#"><div class="relative h-56 overflow-hidden"><img alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4LWwJG8-qCL1bjxDNc_f-2rAqNn4OoPmLaxxVzx7aP8LXxTkwMenVgeKOnKJJuo7MUravmnbV8LOpgrXsuRmylY3eIICMcxro1YVI_Pj4GwmheTUIRIHEA_sxDY3L7bzmXz5c-unZstfkf4rsrys2VzX7UPvnZWMOsn-3t4LUm4Oo73h4GpCN0kH8rxZYfToIigAz_YPodoaikXbXLnyo9RJ4YSa8QopPtfZ-2DpJGsqB2IMwjLt2BSjc9aL9gRfW9y88GWRj5Tep"><div class="absolute top-4 left-4 bg-surface-container-lowest/95 dark:bg-inverse-surface/95 backdrop-blur px-3 py-1.5 rounded-lg font-label-sm text-label-sm text-primary dark:text-primary-fixed flex items-center gap-1"><span class="material-symbols-outlined text-[14px]" data-icon="energy_savings_leaf">energy_savings_leaf</span> Practical Guides</div></div><div class="p-6"><h4 class="font-title-lg text-title-lg text-on-surface dark:text-inverse-on-surface mb-3 line-clamp-2 group-hover:text-tertiary transition-colors">5 Simple Changes for Indian Kitchens</h4><p class="font-body-md text-body-md text-on-surface-variant dark:text-outline mb-6 line-clamp-2">From storing rotis traditionally to repurposing leftover dal—cut waste by 40% with these mohalla-tested tips.</p><div class="flex items-center gap-3 pt-4 border-t border-outline-variant/20"><div class="w-8 h-8 rounded-full bg-tertiary-container flex items-center justify-center text-on-tertiary-container"><span class="material-symbols-outlined text-sm" data-icon="kitchen">kitchen</span></div><span class="font-label-sm text-label-sm text-secondary dark:text-outline">Foodbridge Team • 4 min read</span></div></div></a>
+<!-- Blog Card 3 -->
+<a class="group block bg-surface-container-lowest dark:bg-inverse-surface/80 rounded-xl overflow-hidden warm-shadow border border-outline-variant/30 hover:-translate-y-1 transition-all duration-300 fade-in-up delay-300" href="#"><div class="relative h-56 overflow-hidden"><img alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEPbVH6Y-Rg3uRD5Jqpwc8P_z23MGXulHR4xboOoaG4VrHp8Rq-PznzXBYiyB6pTDANj2AHB3BtIwu1qtGc-PHnqpfF35QzDZ6GTgv8SG-PgTzx1-dCUnnO9KP9dgfvpWpQSgADJMGib0mEMFCprJd9ncdI4d1jPSfGxkuCwU5sCkY9e_jLW36Mu1OJPZI6Ooz3yq9iHZYZmg95xapZRB86nk7u3ZXiqXOYpXGXFDS8MPcKtNOq7avqdASaasEFEIlJVGcz_D0K0gL58s"><div class="absolute top-4 left-4 bg-surface-container-lowest/95 dark:bg-inverse-surface/95 backdrop-blur px-3 py-1.5 rounded-lg font-label-sm text-label-sm text-primary dark:text-primary-fixed flex items-center gap-1"><span class="material-symbols-outlined text-[14px]" data-icon="energy_savings_leaf">energy_savings_leaf</span> Volunteer Voices</div></div><div class="p-6"><h4 class="font-title-lg text-title-lg text-on-surface dark:text-inverse-on-surface mb-3 line-clamp-2 group-hover:text-tertiary transition-colors">Prasad Jo Barbad Nahi Hua: A Temple's Story</h4><p class="font-body-md text-body-md text-on-surface-variant dark:text-outline mb-6 line-clamp-2">How a local temple trust partnered with volunteers to ensure every grain of prasad reaches the hungry.</p><div class="flex items-center gap-3 pt-4 border-t border-outline-variant/20"><img alt="" class="w-8 h-8 rounded-full border border-tertiary/20 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9UnqEU1wGT-YNzDsK7g2KMh2p9ew9Hq-mKzHrx3akW75FBKG3Y7iV850p8HEP_Z2WvAiPxlo625l__c9S9TyNZoP4sxftqHK7vw99w-qtyefPyDIHfjjJxoBSNxupZIRXrhc8D5GFM8UavTmTIurYJ8oeLtek2TUoNb9myQeJ0QYMSrnqmktAG7UjILsY3n6qNaV6nb37fq8lzkB1rcJyPPcF-6TfAisI8N3DCxz9T9Kc-4Zssvbmk23x5ARsHxTELQYzIQr73aDy"><span class="font-label-sm text-label-sm text-secondary dark:text-outline">Rahul K. • 6 min read</span></div></div></a>
+<!-- Blog Card 4 -->
+<a class="group block bg-surface-container-lowest dark:bg-inverse-surface/80 rounded-xl overflow-hidden warm-shadow border border-outline-variant/30 hover:-translate-y-1 transition-all duration-300 fade-in-up delay-300" href="#"><div class="relative h-56 overflow-hidden"><img alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjW-LCbhdYGI-NEAWLOsmkFIc1ybygN2pZGUKZ-BsBbrBR5v-AyGWWDcSTJj_wyNzy5uj6m5-lRmjp3Hjlv9sffQQtw6VIhSlX0kxwqzTGAbBaNa5V42cM7Xpvl4yUgUqATLQd5H4NQVEvflM9GqhMlAgcx2l37Lh2j_hpSFwg65dt0d3onlo2C1diw6GR8cb3nJlBQpyVKWoRrH69F_rvWDxwpNin0pk8EaBHCEYaathx7hR0_wombFc34z6c25ZAZQkZVW_jUGYxcXc"><div class="absolute top-4 left-4 bg-surface-container-lowest/95 dark:bg-inverse-surface/95 backdrop-blur px-3 py-1.5 rounded-lg font-label-sm text-label-sm text-primary dark:text-primary-fixed flex items-center gap-1"><span class="material-symbols-outlined text-[14px]" data-icon="energy_savings_leaf">energy_savings_leaf</span> Anna Daata</div></div><div class="p-6"><h4 class="font-title-lg text-title-lg text-on-surface dark:text-inverse-on-surface mb-3 line-clamp-2 group-hover:text-tertiary transition-colors">The Hidden Truth of Waste in Indian Weddings</h4><p class="font-body-md text-body-md text-on-surface-variant dark:text-outline mb-6 line-clamp-2">A deep dive into the cultural excess of our festivals and how we can return to the values of mindful sharing.</p><div class="flex items-center gap-3 pt-4 border-t border-outline-variant/20"><img alt="" class="w-8 h-8 rounded-full border border-tertiary/20 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFxdZ5RTvVAV0nd9r4WLFppKaJEvm0i7bmEMrjLVtNrlee5lGN7Vz7qTo239WsfyrJC2QoctxyuIlDpJjbwjVkAhB94OGEhxpNhBRfzkxIgnhATrCCnAkt_8uHCm9idVUkCa1aaRPcH3ZuQCe6jajk5e4dXrhhzxoi3gvX6aWCSLFg5X84jdnRSw2VJKjyT3yVhez5DgWga6i5TIpr9DgSWDFBTZfqF-e3IavJikkfR3sz-Jhvtgrxm9UhQwuqYxEIHigSCG5LC9Xv"><span class="font-label-sm text-label-sm text-secondary dark:text-outline">Editorial Team • 10 min read</span></div></div></a>
+</div>
+<div class="mt-12 text-center">
+<button class="px-8 py-3 rounded-lg border-2 border-primary text-primary font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-colors">Load More Stories</button>
+</div>
+</div>
+</div>
+<!-- Sidebar -->
+<aside class="lg:col-span-4 space-y-8 fade-in-up delay-200">
+<!-- Newsletter -->
+<div class="bg-surface-container-low dark:bg-inverse-surface/60 p-8 rounded-xl border border-outline-variant/30 warm-shadow relative overflow-hidden">
+<div class="absolute -right-10 -top-10 text-primary-container/30">
+<span class="material-symbols-outlined text-[120px]" data-icon="spa">spa</span>
+</div>
+<div class="relative z-10">
+<h3 class="font-title-lg text-title-lg text-primary dark:text-primary-fixed mb-3">Hafte mein ek baar, asli kahaniyan jo dil ko chhoo jaayein</h3>
+<p class="font-body-md text-body-md text-on-surface-variant dark:text-inverse-on-surface mb-6">Get inspiring stories and impact updates delivered weekly.</p>
+<form class="space-y-4" onsubmit="event.preventDefault();">
+<input class="w-full px-4 py-3 rounded-lg border border-outline-variant/50 focus:border-tertiary focus:ring-1 focus:ring-tertiary font-body-md text-body-md bg-surface-container-lowest/80 dark:bg-inverse-surface dark:text-inverse-on-surface backdrop-blur" placeholder="Your email address" type="email">
+<button class="w-full bg-tertiary text-on-tertiary font-label-md text-label-md py-3 rounded-lg hover:bg-tertiary-container hover:text-on-tertiary-container transition-colors" type="submit">Subscribe</button>
+</form>
+</div>
+</div>
+<!-- Most Read -->
+<div class="bg-surface-container-lowest dark:bg-inverse-surface/80 p-6 rounded-xl warm-shadow border border-outline-variant/30">
+<h3 class="font-title-lg text-title-lg text-primary dark:text-primary-fixed mb-6 flex items-center gap-2 border-b border-outline-variant/20 pb-4">
+<span class="material-symbols-outlined text-tertiary" data-icon="local_fire_department">local_fire_department</span>
+                        Most Read This Month
+                    </h3>
+<ul class="space-y-6">
+<li class="">
+<a class="group flex gap-4 items-start" href="#">
+<span class="font-headline-md text-[32px] font-bold text-outline-variant dark:text-outline group-hover:text-tertiary transition-colors">01</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface dark:text-inverse-on-surface group-hover:text-primary dark:group-hover:text-primary-fixed transition-colors mb-1">5 Ways to Reduce Waste at Home</h4>
+<span class="font-label-sm text-label-sm text-secondary dark:text-outline flex items-center gap-1"><span class="material-symbols-outlined text-[14px]" data-icon="energy_savings_leaf">energy_savings_leaf</span> Practical Guides</span>
+</div>
+</a>
+</li>
+<li class="">
+<a class="group flex gap-4 items-start" href="#">
+<span class="font-headline-md text-[32px] font-bold text-outline-variant dark:text-outline group-hover:text-tertiary transition-colors">02</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface dark:text-inverse-on-surface group-hover:text-primary dark:group-hover:text-primary-fixed transition-colors mb-1">Meet the Volunteers: Sarah's Story</h4>
+<span class="font-label-sm text-label-sm text-secondary dark:text-outline flex items-center gap-1"><span class="material-symbols-outlined text-[14px]" data-icon="energy_savings_leaf">energy_savings_leaf</span> Volunteer Voices</span>
+</div>
+</a>
+</li>
+<li class="">
+<a class="group flex gap-4 items-start" href="#">
+<span class="font-headline-md text-[32px] font-bold text-outline-variant dark:text-outline group-hover:text-tertiary transition-colors">03</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface dark:text-inverse-on-surface group-hover:text-primary dark:group-hover:text-primary-fixed transition-colors mb-1">Prasad Jo Barbad Nahi Hua</h4>
+<span class="font-label-sm text-label-sm text-secondary dark:text-outline flex items-center gap-1"><span class="material-symbols-outlined text-[14px]" data-icon="energy_savings_leaf">energy_savings_leaf</span> Impact Stories</span>
+</div>
+</a>
+</li>
+</ul>
+</div>
+<!-- Join Movement -->
+<div class="bg-surface-container-lowest dark:bg-inverse-surface/80 p-6 rounded-xl warm-shadow border border-outline-variant/30">
+<h3 class="font-title-lg text-title-lg text-primary dark:text-primary-fixed mb-6 border-b border-outline-variant/20 pb-4">Join the Movement</h3>
+<div class="space-y-4"><a class="flex items-center justify-between p-4 rounded-lg bg-primary text-on-primary hover:bg-primary-container hover:text-on-primary-container transition-all group shadow-sm" href="#"><span class="font-label-md text-label-md">List Surplus Food</span><span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span></a><a class="flex items-center justify-between p-4 rounded-lg border-2 border-primary text-primary dark:border-primary-fixed dark:text-primary-fixed hover:bg-surface-container-low dark:hover:bg-inverse-surface transition-all group" href="#"><span class="font-label-md text-label-md">Join as a Volunteer – 5 Minutes Mein Shuru Karein</span><span class="material-symbols-outlined group-hover:scale-110 transition-transform">volunteer_activism</span></a></div>
+</div>
+</aside>
+</div>
+<!-- Bottom CTA -->
+<section class="mt-section-gap bg-primary dark:bg-primary-container rounded-xl p-12 text-center text-on-primary dark:text-on-primary-container relative overflow-hidden fade-in-up border-b-8 border-tertiary">
+<div class="absolute inset-0 opacity-10" style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22 viewBox=%220 0 40 40%22%3E%3Cpath d=%22M20 0c11.046 0 20 8.954 20 20s-8.954 20-20 20S0 31.046 0 20 8.954 0 20 0zm0 38c9.941 0 18-8.059 18-18S29.941 2 20 2 2 10.059 2 20s8.059 18 18 18zm0-4c7.732 0 14-6.268 14-14S27.732 6 20 6 6 12.268 6 20s6.268 14 14 14zm0-4c5.523 0 10-4.477 10-10S25.523 10 20 10 10 14.477 10 20s4.477 10 10 10zm0-4c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6z%22 fill=%22%23FFF%22 fill-opacity=%221%22 fill-rule=%22evenodd%22/%3E%3C/svg%3E&quot;); background-repeat: repeat;"></div>
+<div class="relative z-10 max-w-2xl mx-auto">
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-6 text-on-primary dark:text-on-primary-container">Ready to turn surplus into real impact?</h2>
+<p class="font-body-lg text-body-lg text-on-primary/90 dark:text-on-primary-container/90 mb-10">Join thousands of individuals and businesses making a difference in their communities every day.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<button class="bg-tertiary text-on-tertiary font-label-md text-label-md px-8 py-4 rounded-lg hover:bg-tertiary-container hover:text-on-tertiary-container transition-colors shadow-lg">Start Donating</button>
+<button class="bg-transparent border-2 border-on-primary/50 dark:border-on-primary-container/50 text-on-primary dark:text-on-primary-container font-label-md text-label-md px-8 py-4 rounded-lg hover:bg-on-primary/10 dark:hover:bg-on-primary-container/10 hover:border-on-primary dark:hover:border-on-primary-container transition-colors">Learn More</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-background dark:bg-inverse-surface border-t border-outline-variant/30 w-full px-margin-mobile md:px-margin-desktop py-12 flex flex-col md:flex-row justify-between items-center gap-base mt-section-gap transition-colors duration-300">
+<div class="font-headline-md text-headline-md text-primary dark:text-primary-fixed tracking-tight">Foodbridge</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-label-sm text-label-sm text-secondary dark:text-outline hover:text-tertiary transition-all focus:ring-2 focus:ring-primary" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-secondary dark:text-outline hover:text-tertiary transition-all focus:ring-2 focus:ring-primary" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-secondary dark:text-outline hover:text-tertiary transition-all focus:ring-2 focus:ring-primary" href="#">Volunteer Portal</a>
+<a class="font-label-sm text-label-sm text-secondary dark:text-outline hover:text-tertiary transition-all focus:ring-2 focus:ring-primary" href="#">Contact Us</a>
+</div>
+<div class="font-body-md text-body-md text-secondary/70 dark:text-outline/70 text-center md:text-right text-sm">
+            © 2024 Foodbridge Stories of Connection. All rights reserved.
+        </div>
+</footer>
+
+
+</body></html>

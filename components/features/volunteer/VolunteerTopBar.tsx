@@ -8,21 +8,26 @@ type VolunteerTopBarProps = {
 
 export function VolunteerTopBar({ userName }: VolunteerTopBarProps) {
   return (
-    <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-border bg-[#F9F7F3]/95 px-4 backdrop-blur-sm dark:bg-background/95 md:ml-64 md:px-8">
-      <div className="flex items-center gap-2 text-sm font-medium text-muted">
-        <span className="mr-4 text-xl font-bold text-brand-coral md:hidden">foodbridge</span>
-        <Link href="/" className="transition-colors hover:text-foreground">
+    <header className="volunteer-nav sticky top-0 z-30 flex h-16 items-center justify-between border-b border-border bg-card px-4 shadow-sm md:ml-64 md:px-8">
+      <div className="flex items-center gap-2 text-sm font-semibold">
+        <span className="volunteer-nav-logo mr-4 text-xl font-bold text-brand-coral md:hidden">
+          foodbridge
+        </span>
+        <Link
+          href="/"
+          className="volunteer-nav-link text-[#544341] transition-colors hover:text-[#201a1a] dark:text-[#e8e0d8] dark:hover:text-[#f5f0e8]"
+        >
           Home
         </Link>
         {userName && (
-          <span className="hidden text-muted-soft md:inline">· {userName}</span>
+          <span className="hidden text-[#877270] dark:text-[#b8aea3] md:inline">· {userName}</span>
         )}
       </div>
       <div className="flex items-center gap-4">
         <form action={signOutAction}>
           <button
             type="submit"
-            className="text-sm font-medium text-muted transition-colors hover:text-foreground"
+            className="volunteer-nav-link text-sm font-semibold text-[#544341] transition-colors hover:text-[#201a1a] dark:text-[#e8e0d8] dark:hover:text-[#f5f0e8]"
           >
             Logout
           </button>

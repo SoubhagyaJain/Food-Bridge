@@ -4,7 +4,7 @@ import type { Role } from "@/lib/constants";
 import { ROLE_ROUTE_PREFIX } from "@/lib/constants";
 
 const AUTH_ROUTES = ["/login", "/register"];
-const PUBLIC_ROUTES = ["/", ...AUTH_ROUTES];
+const PUBLIC_ROUTES = ["/", "/blog", ...AUTH_ROUTES];
 const ONBOARDING_ROUTE = "/auth/onboarding";
 
 function isPublicRoute(pathname: string) {
@@ -23,7 +23,19 @@ function getRoleFromPath(pathname: string): Role | null {
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  const { response: supabaseResponse, user, profile } = await updateSession(request);
+  let supabaseResponse = NextResponse.next();
+  let user: Awaited<ReturnType<typeof updateSession>>["user"] = null;
+  let profile: Awaited<ReturnType<typeof updateSession>>["profile"] = null;
+
+  try {
+    const session = await updateSession(request);
+    supabaseResponse = session.response;
+    user = session.user;
+    profile = session.profile;
+  } catch {
+    // Auth refresh failed — continue; protected routes will redirect to login.
+  }
+
   const userRole = profile?.role ?? null;
   const needsOnboarding = user && profile && !profile.onboardingCompleted;
 

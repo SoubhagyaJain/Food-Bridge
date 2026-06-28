@@ -1,4 +1,4 @@
-import { spawn } from "node:child_process";
+import { spawn, execSync } from "node:child_process";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { rmSync, existsSync } from "node:fs";
@@ -6,6 +6,12 @@ import { rmSync, existsSync } from "node:fs";
 const root = join(fileURLToPath(new URL(".", import.meta.url)), "..");
 const cacheDir = join(root, ".next");
 const port = process.env.PORT ?? "3002";
+
+try {
+  execSync(`node scripts/kill-port.mjs ${port}`, { cwd: root, stdio: "inherit" });
+} catch {
+  // non-fatal — port may already be free
+}
 
 if (existsSync(cacheDir)) {
   rmSync(cacheDir, { recursive: true, force: true });

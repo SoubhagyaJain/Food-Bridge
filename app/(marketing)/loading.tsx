@@ -1,0 +1,1 @@
+export { MarketingRouteLoading as default } from "@/components/shared/route-shells";

@@ -6,9 +6,18 @@ import { cn } from "@/lib/utils";
 
 type ThemeToggleProps = {
   className?: string;
+  variant?: "default" | "marketing" | "auth";
 };
 
-export function ThemeToggle({ className }: ThemeToggleProps) {
+const variantClasses: Record<NonNullable<ThemeToggleProps["variant"]>, string> = {
+  default:
+    "border-border bg-card text-foreground hover:bg-muted/20 focus-visible:outline-brand-sage",
+  marketing:
+    "backdrop-blur-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 dark:border-hero-nav-border dark:bg-hero-nav/10 dark:text-hero-nav dark:hover:bg-hero-nav/20 dark:focus-visible:outline-hero-nav",
+  auth: "auth-glass-card border-white/30 bg-white/10 text-white backdrop-blur-md hover:scale-105 hover:bg-white/20 focus-visible:outline-white",
+};
+
+export function ThemeToggle({ className, variant = "default" }: ThemeToggleProps) {
   const { theme, setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -20,7 +29,8 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
         type="button"
         aria-label="Toggle theme"
         className={cn(
-          "inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card text-foreground",
+          "inline-flex h-10 w-10 items-center justify-center rounded-full border transition-colors",
+          variantClasses[variant],
           className
         )}
       />
@@ -36,7 +46,8 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       title={isDark ? "Light mode" : "Dark mode"}
       className={cn(
-        "inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card text-foreground transition-colors hover:bg-muted/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-sage",
+        "inline-flex h-10 w-10 items-center justify-center rounded-full border transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
+        variantClasses[variant],
         className
       )}
     >

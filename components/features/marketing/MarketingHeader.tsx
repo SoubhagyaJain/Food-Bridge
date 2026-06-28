@@ -1,11 +1,11 @@
 import { getCurrentProfile } from "@/lib/auth/session";
-import { MarketingHeaderNav } from "@/components/features/marketing/MarketingHeaderNav";
+import { MarketingNavbar } from "@/components/features/marketing/MarketingNavbar";
 
 export async function MarketingHeader() {
   const profile = await getCurrentProfile();
 
   return (
-    <MarketingHeaderNav
+    <MarketingNavbar
       user={
         profile
           ? {

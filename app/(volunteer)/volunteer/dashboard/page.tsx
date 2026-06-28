@@ -1,46 +1,27 @@
-import { VolunteerDashboardView } from "@/components/features/volunteer/VolunteerDashboardView";
-import { requireProfile } from "@/lib/auth/session";
-import { sortByUrgency } from "@/lib/volunteer/pickup-ui";
-import {
-  getNearbyOpenPickups,
-  getOpenPickups,
-  getVolunteerImpactStats,
-} from "@/server/queries/pickup.queries";
-import { getVolunteerHomeCoords, getVolunteerProfile } from "@/server/queries/volunteer.queries";
+import { redirect } from "next/navigation";
+import { DashboardView } from "@/components/features/volunteer/dashboard/DashboardView";
+import { getRandomFactoid } from "@/lib/volunteer/get-random-factoid";
+import { getCurrentProfile } from "@/lib/auth/session";
+import { getVolunteerImpactStats } from "@/server/queries/pickup.queries";
+import { getVolunteerProfile } from "@/server/queries/volunteer.queries";
 
 export default async function VolunteerDashboardPage() {
-  const profile = await requireProfile();
+  const profile = await getCurrentProfile();
+  if (!profile) redirect("/login");
+
   const firstName = profile.fullName.split(" ")[0];
-  const homeCoords = await getVolunteerHomeCoords(profile.id);
-  const volunteerProfile = await getVolunteerProfile(profile.id);
-
-  let nearbyPickups = await getOpenPickups();
-  let nearbyCount = nearbyPickups.length;
-
-  if (homeCoords) {
-    try {
-      nearbyPickups = await getNearbyOpenPickups(
-        homeCoords.lat,
-        homeCoords.lng,
-        homeCoords.radiusKm
-      );
-      nearbyCount = nearbyPickups.length;
-    } catch {
-      nearbyPickups = await getOpenPickups();
-    }
-  }
-
-  const [stats, urgentPickups] = await Promise.all([
-    getVolunteerImpactStats(profile.id, nearbyCount),
-    Promise.resolve(sortByUrgency(nearbyPickups).slice(0, 3)),
+  const [volunteerProfile, stats] = await Promise.all([
+    getVolunteerProfile(profile.id),
+    getVolunteerImpactStats(profile.id),
   ]);
 
   return (
-    <VolunteerDashboardView
+    <DashboardView
       firstName={firstName}
-      stats={stats}
-      urgentPickups={urgentPickups}
+      profileId={profile.id}
       profileComplete={Boolean(volunteerProfile.homeAddress)}
+      totalDeliveries={stats.totalDeliveries}
+      factoid={getRandomFactoid()}
     />
   );
 }

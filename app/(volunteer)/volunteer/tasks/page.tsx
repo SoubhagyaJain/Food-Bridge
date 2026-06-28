@@ -1,18 +1,23 @@
+import { redirect } from "next/navigation";
 import { TaskCard } from "@/components/features/volunteer/TaskCard";
+import { VolunteerPageHeader } from "@/components/features/volunteer/portal/VolunteerPageHeader";
+import { VolunteerPageShell } from "@/components/features/volunteer/portal/VolunteerPageShell";
 import { EmptyState } from "@/components/features/volunteer/ui/EmptyState";
-import { requireProfile } from "@/lib/auth/session";
+import { getCurrentProfile } from "@/lib/auth/session";
 import { getVolunteerActiveTasks } from "@/server/queries/pickup.queries";
 
 export default async function VolunteerTasksPage() {
-  const profile = await requireProfile();
+  const profile = await getCurrentProfile();
+  if (!profile) redirect("/login");
+
   const tasks = await getVolunteerActiveTasks(profile.id);
 
   return (
-    <div className="mx-auto max-w-6xl px-4 pb-12 pt-4 md:px-8">
-      <div className="mb-8">
-        <h1 className="mb-2 text-3xl font-bold tracking-tight text-foreground">My Tasks</h1>
-        <p className="font-medium text-muted">Track and update your active deliveries.</p>
-      </div>
+    <VolunteerPageShell variant="solid">
+      <VolunteerPageHeader
+        title="My Tasks"
+        description="Track and update your active deliveries."
+      />
 
       {tasks.length === 0 ? (
         <EmptyState
@@ -30,6 +35,6 @@ export default async function VolunteerTasksPage() {
           ))}
         </div>
       )}
-    </div>
+    </VolunteerPageShell>
   );
 }

@@ -1,0 +1,321 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Soubhagya - Volunteer Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-background": "#201a1a",
+                      "tertiary-fixed-dim": "#e1c0aa",
+                      "primary": "#2a0002",
+                      "outline-variant": "#dac1bf",
+                      "surface-variant": "#ede0df",
+                      "surface-container-high": "#f2e5e5",
+                      "inverse-primary": "#ffb3ad",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-fixed": "#e6e2dc",
+                      "on-error-container": "#93000a",
+                      "background": "#fff8f7",
+                      "tertiary-container": "#332012",
+                      "on-secondary-fixed-variant": "#484743",
+                      "on-primary-container": "#cc726d",
+                      "secondary-container": "#e6e2dc",
+                      "primary-container": "#4a0e0e",
+                      "on-surface-variant": "#544341",
+                      "error-container": "#ffdad6",
+                      "error": "#ba1a1a",
+                      "secondary": "#605e5a",
+                      "surface-container": "#f8ebea",
+                      "surface-container-low": "#fef1f0",
+                      "surface-container-highest": "#ede0df",
+                      "primary-fixed-dim": "#ffb3ad",
+                      "on-tertiary-fixed": "#29180a",
+                      "primary-fixed": "#ffdad7",
+                      "surface": "#fff8f7",
+                      "on-tertiary-fixed-variant": "#594231",
+                      "on-secondary": "#ffffff",
+                      "tertiary-fixed": "#fedcc5",
+                      "surface-tint": "#954742",
+                      "surface-bright": "#fff8f7",
+                      "on-primary-fixed": "#3d0506",
+                      "on-surface": "#201a1a",
+                      "on-primary": "#ffffff",
+                      "on-secondary-fixed": "#1c1c18",
+                      "secondary-fixed-dim": "#c9c6c1",
+                      "on-tertiary-container": "#a28672",
+                      "inverse-surface": "#362f2f",
+                      "tertiary": "#1a0b02",
+                      "on-secondary-container": "#666460",
+                      "on-tertiary": "#ffffff",
+                      "inverse-on-surface": "#fbeeed",
+                      "surface-dim": "#e4d7d7",
+                      "on-primary-fixed-variant": "#77302d",
+                      "outline": "#877270",
+                      "on-error": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "margin-mobile": "16px",
+                      "section-gap": "120px",
+                      "margin-desktop": "64px",
+                      "container-max": "1280px",
+                      "unit": "8px"
+              },
+              "fontFamily": {
+                      "label-lg": [
+                              "Montserrat"
+                      ],
+                      "display-lg-mobile": [
+                              "Montserrat"
+                      ],
+                      "body-md": [
+                              "Montserrat"
+                      ],
+                      "headline-lg": [
+                              "Montserrat"
+                      ],
+                      "headline-md": [
+                              "Montserrat"
+                      ],
+                      "display-lg": [
+                              "Montserrat"
+                      ],
+                      "body-lg": [
+                              "Montserrat"
+                      ]
+              },
+              "fontSize": {
+                      "label-lg": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "0.08em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "36px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "40px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "28px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-lg": [
+                              "64px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(74, 14, 14, 0.05);
+        }
+        .dark .glass-card {
+            background: rgba(54, 47, 47, 0.4);
+            border: 1px solid rgba(218, 193, 191, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        .text-gradient {
+            background: linear-gradient(90deg, #2a0002 0%, #77302d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .ken-burns {
+            animation: kenburns 20s ease-out infinite alternate;
+        }
+        @keyframes kenburns {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+        .stagger-in > * {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.6s ease-out forwards;
+        }
+        .stagger-in > *:nth-child(1) { animation-delay: 0.1s; }
+        .stagger-in > *:nth-child(2) { animation-delay: 0.2s; }
+        .stagger-in > *:nth-child(3) { animation-delay: 0.3s; }
+        .stagger-in > *:nth-child(4) { animation-delay: 0.4s; }
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+      </style>
+<script>
+    function toggleTheme() {
+        document.documentElement.classList.toggle('dark');
+    }
+</script>
+</head>
+<body class="bg-background dark:bg-inverse-surface text-on-surface dark:text-surface-bright min-h-screen flex flex-col md:flex-row antialiased font-body-md text-body-md overflow-x-hidden transition-colors duration-300">
+<!-- Top Navigation (Desktop) -->
+<nav class="hidden md:flex justify-between items-center h-20 px-margin-desktop ml-64 bg-surface/90 dark:bg-inverse-surface/90 backdrop-blur-md border-b border-outline-variant/30 dark:border-outline/30 shadow-sm fixed top-0 w-[calc(100%-16rem)] z-50"><div class="flex items-center gap-2 font-label-lg text-label-lg uppercase tracking-wider text-secondary dark:text-surface-dim"><span class="">Home</span><span class="material-symbols-outlined text-sm">chevron_right</span><span class="text-primary dark:text-inverse-primary font-bold">Soubhagya</span></div><div class="flex items-center gap-6"><div class="flex items-center gap-4"><button class="material-symbols-outlined text-on-surface-variant dark:text-surface-dim hover:text-primary dark:hover:text-inverse-primary cursor-pointer transition-opacity hover:opacity-80" onclick="toggleTheme()" aria-label="Toggle Theme"><span class="dark:hidden">light_mode</span><span class="hidden dark:block">dark_mode</span></button><span class="material-symbols-outlined text-on-surface-variant dark:text-surface-dim hover:text-primary dark:hover:text-inverse-primary cursor-pointer transition-opacity hover:opacity-80">notifications</span></div><button class="text-on-surface-variant dark:text-surface-dim hover:text-primary dark:hover:text-inverse-primary transition-opacity hover:opacity-80 font-label-lg text-label-lg uppercase">Logout</button><div class="w-10 h-10 rounded-full bg-surface-variant dark:bg-surface-container-high overflow-hidden border border-outline-variant dark:border-outline"><img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo88aFyYiY9bwbsOJUCmqpqs7Tq2S3DW2CaKB1M0xgX0r5a8NVQrcYtBW27FRDYbKKU4Dapwk_sciYHAi9rr99WwSdh51dM-g-UfNWhUWbk9mveW55QxF3_aNJ4SAZ7NOfbsboWPudVMPyLIH3vaYnUR6ZyYgBNSIkzLwx49NxdGbam4gMgyLTHhzFhIEqpSzWB_9lV9xAs2X50Fem-6bdCoqqPaSU1pM7bCHPLLjnlZs3IICWbSoameeK4jDBdl77TOuegrGoHMoJ"></div></div></nav>
+<!-- Side Navigation (Desktop & Shared Config Logic) -->
+<aside class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 bg-surface dark:bg-inverse-surface border-r border-outline-variant dark:border-outline py-8 px-4 z-50">
+<div class="mb-12 px-4 flex items-center gap-4"><div class="w-12 h-12 rounded-full bg-primary-container dark:bg-primary-fixed flex items-center justify-center text-on-primary-container dark:text-on-primary-fixed"><span class="material-symbols-outlined">volunteer_activism</span></div><div class=""><h2 class="font-label-lg text-label-lg uppercase tracking-wider text-primary dark:text-inverse-primary">Foodbridge</h2><p class="text-xs text-secondary dark:text-surface-dim mt-1">Global Citizen Portal</p></div></div>
+<nav class="flex-1 flex flex-col gap-2"><a class="flex items-center gap-4 px-4 py-3 rounded-lg text-primary dark:text-inverse-primary font-bold border-r-4 border-primary dark:border-inverse-primary bg-primary-container/10 dark:bg-primary-fixed/10 scale-98 transition-transform" href="#"><span class="material-symbols-outlined">dashboard</span><span class="font-label-lg text-label-lg uppercase tracking-wider">Dashboard</span></a><a class="flex items-center gap-4 px-4 py-3 rounded-lg text-secondary dark:text-surface-dim hover:text-primary dark:hover:text-inverse-primary hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors duration-200 scale-98 transition-transform" href="#"><span class="material-symbols-outlined">local_shipping</span><span class="font-label-lg text-label-lg uppercase tracking-wider">Available Pickups</span></a><a class="flex items-center gap-4 px-4 py-3 rounded-lg text-secondary dark:text-surface-dim hover:text-primary dark:hover:text-inverse-primary hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors duration-200 scale-98 transition-transform" href="#"><span class="material-symbols-outlined">assignment</span><span class="font-label-lg text-label-lg uppercase tracking-wider">My Tasks</span></a><a class="flex items-center gap-4 px-4 py-3 rounded-lg text-secondary dark:text-surface-dim hover:text-primary dark:hover:text-inverse-primary hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors duration-200 scale-98 transition-transform" href="#"><span class="material-symbols-outlined">history</span><span class="font-label-lg text-label-lg uppercase tracking-wider">History</span></a><a class="flex items-center gap-4 px-4 py-3 rounded-lg text-secondary dark:text-surface-dim hover:text-primary dark:hover:text-inverse-primary hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors duration-200 scale-98 transition-transform" href="#"><span class="material-symbols-outlined">person</span><span class="font-label-lg text-label-lg uppercase tracking-wider">Profile</span></a></nav>
+<div class="mt-auto flex flex-col gap-4"><button class="w-full bg-surface-tint text-on-primary py-3 rounded-lg font-label-lg text-label-lg uppercase tracking-wider hover:bg-primary-container transition-colors">Schedule Pickup</button><div class="border-t border-outline-variant dark:border-outline pt-4 mt-2 flex flex-col gap-2"><a class="flex items-center gap-4 px-4 py-2 rounded-lg text-secondary dark:text-surface-dim hover:text-primary dark:hover:text-inverse-primary hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors duration-200" href="#"><span class="material-symbols-outlined text-[20px]">logout</span><span class="font-label-lg text-label-lg uppercase tracking-wider text-[12px]">Logout</span></a><button class="flex items-center gap-4 px-4 py-2 rounded-lg text-secondary dark:text-surface-dim hover:text-primary dark:hover:text-inverse-primary hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors duration-200" onclick="toggleTheme()"><span class="material-symbols-outlined text-[20px]">dark_mode</span><span class="font-label-lg text-label-lg uppercase tracking-wider text-[12px]">Toggle Theme</span></button><a class="flex items-center gap-4 px-4 py-2 rounded-lg text-secondary dark:text-surface-dim hover:text-primary dark:hover:text-inverse-primary hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-colors duration-200" href="#"><span class="material-symbols-outlined text-[20px]">settings</span><span class="font-label-lg text-label-lg uppercase tracking-wider text-[12px]">Settings</span></a></div></div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 w-full md:ml-64 mt-0 md:mt-20 relative">
+<!-- Cinematic Hero Background -->
+<div class="absolute inset-0 h-[600px] w-full z-0 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center absolute inset-0 ken-burns" data-alt="Community Kitchen" style="background-image: url('https://lh3.googleusercontent.com/aida/AP1WRLsg4jle29tOdIBuVp-freA-q2VDoR_4lwafzpqnNUK0C3By07sPODJFAFB8bsf-d1-c1hVeTb_cTc2Hcjf2bp4Fx-oDcTdNf0gpONci92LVFdO-N0q3SEC7KtVHGfsyYeF10zAqZ6Hvumst84oGiUwq_7DwstaCrlNJfAIVUEbtnhibX2Rr54H3LtQ9vqy-CV6e6U-wLILS_C5b0uw7_YaJStXoqMFL6hVEFhGCwFhfCZPFm34KastzVcqf'); background-attachment: fixed;"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-white/60 via-white/40 to-background dark:from-black/80 dark:via-black/60 dark:to-inverse-surface backdrop-blur-[2px] transition-colors duration-300"></div>
+</div>
+<div class="relative z-10 px-margin-mobile md:px-margin-desktop py-12 md:py-16 max-w-container-max mx-auto">
+<!-- Welcome Header -->
+<header class="mb-16 max-w-3xl">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface dark:text-surface-bright mb-4 leading-tight">
+                    Good morning, Soubhagya! 👋
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant dark:text-surface-dim max-w-2xl">
+                    Ready to save some food today? Here's your impact at a glance. Every action contributes to a more sustainable, equitable world.
+                </p>
+</header>
+<!-- Impact Grid (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-section-gap stagger-in">
+<div class="glass-card rounded-xl p-6 transition-transform hover:-translate-y-2 duration-300 cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-tertiary-container dark:text-tertiary-fixed text-3xl">local_shipping</span>
+<span class="bg-surface-container-high dark:bg-surface-container-highest text-on-surface-variant dark:text-surface-dim px-2 py-1 rounded text-xs font-label-lg uppercase tracking-wider">All Time</span>
+</div>
+<p class="font-body-md text-body-md text-secondary dark:text-surface-dim mb-1">Total deliveries</p>
+<p class="font-headline-lg text-headline-lg text-primary dark:text-inverse-primary">0</p>
+</div>
+<div class="glass-card rounded-xl p-6 transition-transform hover:-translate-y-2 duration-300 cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-tertiary-container dark:text-tertiary-fixed text-3xl">calendar_month</span>
+<span class="bg-surface-container-high dark:bg-surface-container-highest text-on-surface-variant dark:text-surface-dim px-2 py-1 rounded text-xs font-label-lg uppercase tracking-wider">Current</span>
+</div>
+<p class="font-body-md text-body-md text-secondary dark:text-surface-dim mb-1">This month</p>
+<p class="font-headline-lg text-headline-lg text-primary dark:text-inverse-primary">0</p>
+</div>
+<div class="glass-card rounded-xl p-6 transition-transform hover:-translate-y-2 duration-300 cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-tertiary-container dark:text-tertiary-fixed text-3xl">scale</span>
+<span class="bg-surface-container-high dark:bg-surface-container-highest text-on-surface-variant dark:text-surface-dim px-2 py-1 rounded text-xs font-label-lg uppercase tracking-wider">Rescued</span>
+</div>
+<p class="font-body-md text-body-md text-secondary dark:text-surface-dim mb-1">Food delivered</p>
+<p class="font-headline-lg text-headline-lg text-primary dark:text-inverse-primary">0.0 <span class="text-lg text-secondary dark:text-surface-dim font-normal">kg</span></p>
+</div>
+<div class="glass-card rounded-xl p-6 transition-transform hover:-translate-y-2 duration-300 border-surface-tint/20 dark:border-inverse-primary/20 cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-surface-tint dark:text-inverse-primary text-3xl" style="font-variation-settings: &quot;FILL&quot; 1;">location_on</span>
+<span class="bg-primary-container dark:bg-primary-fixed text-on-primary-container dark:text-on-primary-fixed px-2 py-1 rounded text-xs font-label-lg uppercase tracking-wider flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-on-primary-container dark:bg-on-primary-fixed animate-pulse"></span> Live</span>
+</div>
+<p class="font-body-md text-body-md text-secondary dark:text-surface-dim mb-1">Open near you</p>
+<p class="font-headline-lg text-headline-lg text-primary dark:text-inverse-primary">0</p>
+</div>
+</div>
+<!-- Complex Layout Section -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-section-gap stagger-in">
+<!-- Left Column (Milestone & Education) -->
+<div class="lg:col-span-2 flex flex-col gap-8">
+<!-- Milestone -->
+<section class="glass-card rounded-xl p-8 relative overflow-hidden transition-transform hover:-translate-y-1 duration-300">
+<div class="absolute right-0 top-0 w-64 h-64 bg-primary-fixed-dim/20 rounded-full blur-3xl -mr-20 -mt-20"></div>
+<h2 class="font-headline-md text-headline-md text-primary dark:text-inverse-primary mb-2 relative z-10 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container dark:text-primary-fixed" style="font-variation-settings: &quot;FILL&quot; 1;">workspace_premium</span>
+                            First Pickup Badge
+                        </h2>
+<p class="font-body-md text-body-md text-on-surface-variant dark:text-surface-dim mb-6 relative z-10">You are just 1 delivery away from earning your first milestone!</p>
+<div class="relative z-10">
+<div class="flex justify-between font-label-lg text-label-lg text-secondary dark:text-surface-dim mb-2 uppercase tracking-wider">
+<span class="">0 deliveries</span>
+<span class="">1 delivery</span>
+</div>
+<div class="h-3 w-full bg-surface-variant dark:bg-surface-container-high rounded-full overflow-hidden border border-outline-variant/50 dark:border-outline/50">
+<div class="h-full bg-surface-tint w-[5%] rounded-full relative">
+<div class="absolute inset-0 bg-white/20 animate-pulse"></div>
+</div>
+</div>
+</div>
+<button class="mt-8 bg-surface-tint text-on-primary px-6 py-3 rounded-lg font-label-lg text-label-lg uppercase tracking-wider hover:bg-primary-container transition-colors relative z-10 shadow-lg">Find a Pickup</button>
+</section>
+<!-- Education/Impact Fact -->
+<section class="glass-card !bg-tertiary-container/80 dark:!bg-tertiary-container/40 text-on-tertiary-container dark:text-tertiary-fixed rounded-xl p-8 flex items-start gap-6 transition-transform hover:-translate-y-1 duration-300">
+<div class="w-16 h-16 rounded-full bg-on-tertiary-container/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-3xl text-tertiary-fixed-dim">eco</span>
+</div>
+<div>
+<h3 class="font-label-lg text-label-lg uppercase tracking-wider text-tertiary-fixed-dim mb-2">Impact Fact</h3>
+<p class="font-headline-md text-headline-md text-on-secondary dark:text-surface-bright font-serif italic leading-tight">
+                                "Every kilogram of food you rescue saves roughly 2.5 kg of CO2 emissions."
+                            </p>
+</div>
+</section>
+</div>
+<!-- Right Column (Urgent Needs & Onboarding) -->
+<div class="flex flex-col gap-8">
+<!-- Urgent Needs (Empty State) -->
+<section class="glass-card rounded-xl p-6 flex flex-col h-full transition-transform hover:-translate-y-1 duration-300">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-label-lg text-label-lg uppercase tracking-wider text-primary dark:text-inverse-primary">Urgent Needs Nearby</h2>
+<a class="font-label-lg text-label-lg uppercase text-secondary dark:text-surface-dim hover:text-primary dark:hover:text-inverse-primary transition-colors" href="#">View all</a>
+</div>
+<div class="flex-1 flex flex-col items-center justify-center text-center p-6 bg-surface-container-low/50 dark:bg-surface-container-highest/30 rounded-lg border border-dashed border-outline-variant/50 dark:border-outline/50"><span class="material-symbols-outlined text-4xl text-outline mb-4">location_off</span><p class="font-body-md text-body-md text-on-surface-variant dark:text-surface-dim mb-4">No open pickups nearby right now. <a class="text-surface-tint dark:text-inverse-primary font-bold underline" href="#">Set your home location</a> to see matches.</p><button class="border border-surface-tint dark:border-inverse-primary text-surface-tint dark:text-inverse-primary px-4 py-2 rounded-lg font-label-lg text-label-lg uppercase tracking-wider hover:bg-surface-tint/5 transition-colors">Set Location</button></div>
+</section>
+</div>
+</div>
+<!-- Onboarding Guide -->
+<section class="mb-section-gap stagger-in">
+<h2 class="font-headline-md text-headline-md text-primary dark:text-inverse-primary mb-8 border-b border-outline-variant dark:border-outline pb-4">New to FoodBridge?</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6"><div class="glass-card p-6 rounded-xl flex items-start gap-4 transition-transform hover:-translate-y-1 duration-300"><div class="w-8 h-8 rounded-full bg-primary-container dark:bg-primary-fixed text-on-primary-container dark:text-on-primary-fixed flex items-center justify-center font-bold shrink-0">1</div><div><h3 class="font-label-lg text-label-lg uppercase tracking-wider text-primary dark:text-inverse-primary mb-1">Create Profile</h3><p class="font-body-md text-body-md text-secondary dark:text-surface-dim">Set your home address on Profile to find local opportunities.</p></div></div><div class="glass-card p-6 rounded-xl flex items-start gap-4 opacity-70 grayscale transition-transform hover:-translate-y-1 duration-300"><div class="w-8 h-8 rounded-full bg-surface-variant dark:bg-surface-container-high text-on-surface-variant dark:text-surface-dim flex items-center justify-center font-bold shrink-0 border border-outline-variant dark:border-outline">2</div><div><h3 class="font-label-lg text-label-lg uppercase tracking-wider text-on-surface-variant dark:text-surface-dim mb-1">Complete a Pickup</h3><p class="font-body-md text-body-md text-secondary dark:text-surface-dim">Claim a task nearby to get started and deliver it safely.</p></div></div><div class="glass-card p-6 rounded-xl flex items-start gap-4 opacity-70 grayscale transition-transform hover:-translate-y-1 duration-300"><div class="w-8 h-8 rounded-full bg-surface-variant dark:bg-surface-container-high text-on-surface-variant dark:text-surface-dim flex items-center justify-center font-bold shrink-0 border border-outline-variant dark:border-outline">3</div><div><h3 class="font-label-lg text-label-lg uppercase tracking-wider text-on-surface-variant dark:text-surface-dim mb-1">Earn Badge</h3><p class="font-body-md text-body-md text-secondary dark:text-surface-dim">Achieve your first milestone and track impact.</p></div></div></div>
+</section>
+</div>
+</main>
+
+
+</body></html>

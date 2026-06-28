@@ -1,16 +1,24 @@
-import { Hero } from "@/components/features/marketing/Hero";
-import { HeroCards } from "@/components/features/marketing/HeroCards";
-import { BuildingBridgesTogether } from "@/components/features/marketing/BuildingBridgesTogether";
-import { getPlatformStats } from "@/server/queries/stats.queries";
+import { CtaBannerSection } from "@/components/features/marketing/CtaBannerSection";
+import { HeroSection } from "@/components/features/marketing/HeroSection";
+import { HowItWorksSection } from "@/components/features/marketing/HowItWorksSection";
+import { ImpactStatsSection } from "@/components/features/marketing/ImpactStatsSection";
+import { MarketingFooter } from "@/components/features/marketing/MarketingFooter";
+import { MarketingPageShell } from "@/components/features/marketing/MarketingPageShell";
+import { RoleCardsSection } from "@/components/features/marketing/RoleCardsSection";
+import { TestimonialsSection } from "@/components/features/marketing/TestimonialsSection";
 
-export default async function MarketingPage() {
-  const stats = await getPlatformStats();
-
+export default function MarketingPage() {
   return (
-    <>
-      <Hero />
-      <HeroCards />
-      <BuildingBridgesTogether stats={stats} />
-    </>
+    <MarketingPageShell>
+      <main className="flex-grow">
+        <HeroSection />
+        <ImpactStatsSection />
+        <HowItWorksSection />
+        <RoleCardsSection />
+        <TestimonialsSection />
+        <CtaBannerSection />
+        <MarketingFooter />
+      </main>
+    </MarketingPageShell>
   );
 }

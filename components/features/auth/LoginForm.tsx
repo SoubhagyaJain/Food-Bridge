@@ -20,6 +20,8 @@ import { GoogleSignInButton } from "@/components/features/auth/GoogleSignInButto
 import { AuthDivider } from "@/components/features/auth/AuthDivider";
 import { ROLE_LABELS } from "@/lib/auth/roles";
 import type { Role } from "@/lib/constants";
+import { typeBodySm } from "@/lib/typography";
+import { cn } from "@/lib/utils";
 
 type LoginFormProps = {
   role: Role;
@@ -89,8 +91,8 @@ export function LoginForm({ role, redirectTo }: LoginFormProps) {
 
   return (
     <div className="space-y-4">
-      <p className="text-center text-sm text-muted">
-        Signing in as <span className="font-medium text-foreground">{ROLE_LABELS[role]}</span>
+      <p className={cn("text-center", typeBodySm)}>
+        Signing in as <span className="font-bold text-foreground">{ROLE_LABELS[role]}</span>
         {" · "}
         <Link href="/login" className="text-brand-sage hover:underline">
           Change role
@@ -135,7 +137,7 @@ export function LoginForm({ role, redirectTo }: LoginFormProps) {
             {emailNotConfirmed && (
               <button
                 type="button"
-                className="font-medium underline underline-offset-2"
+                className="font-semibold underline underline-offset-2"
                 disabled={resendPending}
                 onClick={handleResendConfirmation}
               >
@@ -155,9 +157,9 @@ export function LoginForm({ role, redirectTo }: LoginFormProps) {
           {pending ? "Signing in…" : "Sign in"}
         </Button>
 
-        <p className="text-center text-sm text-muted">
+        <p className={cn("text-center", typeBodySm)}>
           No account?{" "}
-          <Link href={`/register?role=${role}`} className="font-medium text-brand-sage hover:underline">
+          <Link href={`/register?role=${role}`} className="font-bold text-brand-sage hover:underline">
             Register
           </Link>
         </p>

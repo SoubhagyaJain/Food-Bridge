@@ -28,7 +28,7 @@ export function Navbar({ role }: { role: Role }) {
   const items = ROLE_NAV[role];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-card">
+    <header className="site-nav dashboard-nav sticky top-0 z-50 border-b border-border bg-card">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-6">
         <div className="flex items-center gap-6">
           <Link href={`/${role}/dashboard`}>
@@ -36,7 +36,7 @@ export function Navbar({ role }: { role: Role }) {
           </Link>
           <Link
             href="/"
-            className="text-sm font-medium text-muted transition-colors hover:text-brand-sage"
+            className="text-sm font-semibold text-on-surface-variant transition-colors hover:text-brand-sage dark:text-muted"
           >
             Home
           </Link>
@@ -46,7 +46,7 @@ export function Navbar({ role }: { role: Role }) {
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-foreground transition-colors hover:text-brand-sage"
+              className="text-sm font-semibold text-foreground transition-colors hover:text-brand-sage"
             >
               {item.label}
             </Link>
